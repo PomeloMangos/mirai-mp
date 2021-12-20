@@ -1,0 +1,9 @@
+<view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
+</view>
+<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
+    <image src="/assets/images/logo.png" alt="" />
+</view>
+
+<view class="search-dropdown-box {{ isFullScreen ? 'full' : '' }}">
+    <input type="text" class="textbox" placeholder="搜索公会..." />
+</view>

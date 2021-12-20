@@ -1,0 +1,11 @@
+<view class="{{ isFullScreen ? 'footer footer-full' : 'footer' }}">
+    <table>
+        <tr>
+            <td>
+                <i class="fa fa-home"></i>
+                <br />
+                <view>公会</view>
+            </td>
+        </tr>
+    </table>
+</view>
