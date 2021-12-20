@@ -188,6 +188,10 @@ table {
   padding: 55px 10px 0 10px;
 }
 
+.guild-wrapper.full {
+  padding: 85px 10px 0 10px;
+}
+
 .ch-wrapper {
   padding: 15px 10px 0 10px;
 }
@@ -196,15 +200,23 @@ table {
   padding: 135px 10px 0 10px;
 }
 
-.guild-item img {
+.guild-item image {
   width: 40px;
   height: 40px;
   border-radius: 10px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .guild-item table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.guild-item table td {
+  vertical-align: top;
+  font-size: 18px;
+  padding-top: 10px;
 }
 
 .guild-item {
@@ -303,7 +315,7 @@ table {
   line-height: 48px;
 }
 
-.charactor-name img {
+.charactor-name image {
   width: 48px!important;
   height: 48px!important;
 }
@@ -402,7 +414,7 @@ table {
       zoom: 0.9;
   }
 
-  .wcl-table img {
+  .wcl-table image {
       width: 24px;
       height: 24px;
       vertical-align: middle;
@@ -664,7 +676,7 @@ table {
       color: #ff9f9f;
   }
 
-.task-item img {
+.task-item image {
   vertical-align: middle;
 }
 
@@ -692,4 +704,8 @@ table {
 .main.full {
   padding-top: 35px;
   padding-bottom: 80px;
+}
+
+div {
+  display: block;
 }

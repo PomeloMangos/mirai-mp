@@ -42,7 +42,7 @@
         "useCompilerPlugins": false
     },
     "compileType": "miniprogram",
-    "libVersion": "2.17.0",
+    "libVersion": "2.21.1",
     "appid": "wx3adae0d29fb9ee7e",
     "projectname": "Mirai",
     "debugOptions": {

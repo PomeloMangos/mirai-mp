@@ -4,7 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    isFullScreen: getApp().globalData.isFullScreen
+    isFullScreen: getApp().globalData.isFullScreen,
+    active: ''
   },
   // 事件处理函数
   bindViewTap() {
@@ -12,7 +13,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  onTabItemTap: function (item) {
+    console.error(item);
+  },
   onLoad() {
+    app.globalData.tab = this;
     wx.switchTab({
       url: '/pages/index/index',
     })
@@ -22,7 +27,6 @@ Page({
     wx.getUserProfile({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        console.log(res)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
