@@ -12,17 +12,14 @@ Page({
         id: null,
         isFullScreen: app.globalData.isFullScreen,
         host: app.globalData.host,
-        guild: null,
+        activity: null,
         active: null,
         layoutVariables: {
         }
     },
     onLoad: function(options) {
         this.setData(options);
-        wx.$guild = this;
-        wx.$guildId = options.id;
-        this.loadGuild();
-        this.switchTab2('home');
+        this.switchTab2('reg');
     },
     onUnload: function() {
 
@@ -38,8 +35,8 @@ Page({
     },
     loadGuild: function() {
         let self = this;
-        return qv.get(`${this.data.host}/api/guild/${this.data.id}`).then(result => {
-            self.setData({ guild: result.data.data });
+        return qv.get(`${this.data.host}/api/activity/${this.data.id}`).then(result => {
+            self.setData({ activity: result.data.data });
         });
     },
     onShareAppMessage: function () {

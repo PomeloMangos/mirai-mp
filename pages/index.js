@@ -9,10 +9,7 @@ Page({
      */
     data: {
         isFullScreen: app.globalData.isFullScreen,
-        activeLayout: "0",
-        layouts: [
-            { active: 'home' }
-        ],
+        active: 'home',
         layoutVariables: {
             characterSearch: {
                 name: '',
@@ -22,25 +19,25 @@ Page({
     },
     onLoad: function() {
         wx.$root = this;
+        let defaultGuild = wx.getStorageSync('defaultGuild');
+        if (defaultGuild) {
+            this.navigateToGuild(defaultGuild);
+        }
     },
     switchTab: function(event) {
-        let layout = event.currentTarget.dataset.layout;
         let active = event.currentTarget.dataset.active;
-        this.switchTab2(layout, active);
+        this.switchTab2(active);
     },
-    switchTab2: function(layout, active) {
-        let data = {
-            activeLayout: layout
-        };
-        data[`layouts[${layout}].active`] = active;
-        this.setData(data);
+    switchTab2: function(active) {
+        this.setData({
+            active: active
+        });
     },
     switchToCharacterDetail: function(name, realm) {
         this.setData({
             "layoutVariables.characterSearch.name": name,
             "layoutVariables.characterSearch.realm": realm,
-            activeLayout: 0,
-            "layouts[0].active": 'ch-res'
+            active: 'ch-res'
         });
     },
     navigateToGuild: function(guildId) {

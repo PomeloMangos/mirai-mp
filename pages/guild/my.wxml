@@ -1,0 +1,29 @@
+<view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
+</view>
+<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
+    <image wx:if="{{ guild && guild.guildLogoUrl }}" src="{{ host + guild.guildLogoUrl }}" alt="" />
+    <image wx:else src="/assets/images/logo.png" alt="" />
+</view>
+
+<view class="wrapper {{ isFullScreen ? 'full' : '' }}">
+    <div class="section-title">设置常驻公会</div>
+    
+    <view wx:if="{{ guild.id != defaultGuild }}">
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr>
+                <td class="row-btn" bindtap="onSetBtnClicked">设置常驻公会</td>
+            </tr>
+        </table>
+
+        <div class="section-title">设置常驻公会后，进入小程序时将自动进入公会，您无需再从公会列表中找到该公会进入。</div>
+    </view>
+    <view wx:else>
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr>
+                <td class="row-btn" style="color: rgb(255,128,128)" bindtap="onUnsetBtnClicked">取消常驻公会</td>
+            </tr>
+        </table>
+
+        <div class="section-title">您当前已经将{{guild.name}}设置为常驻公会，点击取消后，小程序初始化时将进入公会列表。</div>
+    </view>
+</view>

@@ -55,6 +55,12 @@ Component({
         handleActivity: function(act) {
             act._firstRaid = act.raids.split(',')[0].trim();
             act._begin = moment(act.begin).format('MM月DD日 HH:mm');
+        },
+        navigateToGuild: function(event) {
+            let activityId = event.currentTarget.dataset.id;
+            wx.navigateTo({
+                url: `activity?id=${activityId}`,
+            })
         }
     },
 

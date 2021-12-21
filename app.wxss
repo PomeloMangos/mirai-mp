@@ -811,3 +811,8 @@ tr {
 thead, tbody, tfoot {
   display: table-row-group;
 }
+
+.row-btn {
+  text-align: center;
+  color: #3dd0d8;
+}

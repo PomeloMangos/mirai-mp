@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/index",
-        "pages/guild"
+        "pages/guild",
+        "pages/activity"
     ],
     "window": {
         "backgroundTextStyle": "dark",

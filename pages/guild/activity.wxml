@@ -17,7 +17,7 @@
 
 <view class="wrapper {{ isFullScreen ? 'full' : '' }}">
     <table class="wcl-table">
-        <tr v-on:click="$root.open('/act?id=' + act.id)" wx:for="{{ result.data }}" wx:for-item="act">
+        <tr data-id="{{ act.id }}" bindtap="navigateToGuild" wx:for="{{ result.data }}" wx:for-item="act">
             <td>
                 <image class="raid-icon" wx:if="{{ act.raids == '1,2' }}" src="{{ host }}/assets/images/raid/1_2.png" />
                 <image class="raid-icon" wx:elif="{{ act.raids == '3,4' }}" src="{{ host }}/assets/images/raid/3_4.png" />
