@@ -19,10 +19,12 @@ Page({
     },
     onLoad: function(options) {
         this.setData(options);
+        wx.$activity = this;
+        this.loadActivity();
         this.switchTab2('reg');
     },
     onUnload: function() {
-
+        wx.$activity = null;
     },
     switchTab: function(event) {
         let active = event.currentTarget.dataset.active;
@@ -33,10 +35,14 @@ Page({
             active: active
         });
     },
-    loadGuild: function() {
+    loadActivity: function() {
+        wx.showLoading({
+          title: '正在加载活动...',
+        })
         let self = this;
         return qv.get(`${this.data.host}/api/activity/${this.data.id}`).then(result => {
             self.setData({ activity: result.data.data });
+            wx.hideLoading({});
         });
     },
     onShareAppMessage: function () {

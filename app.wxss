@@ -68,7 +68,7 @@ table {
 }
 
 .header-buttons.full {
-  top: 35px;
+  top: 37px;
 }
 
 .header-logo image {

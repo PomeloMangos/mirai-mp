@@ -1,0 +1,8 @@
+<view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
+</view>
+<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
+    <div class="text-title">{{activity.name}}</div>
+</view>
+<view wx:if="canBack" class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
+    <a bindtap="onBackBtnClicked"><i class="fa fa-angle-left"></i> 返回</a>
+</view>
