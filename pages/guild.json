@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "guild-activity": "guild/activity"
+  }
+}

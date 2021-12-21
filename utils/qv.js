@@ -55,26 +55,30 @@ var qv = {
     },
     request: function (endpoint, method, params, dataType) {
         var self = this;
+        var header = {};
+        if (wx) {
+            if (wx.$token) {
+                header['Authorization'] = 'Token ' + wx.$token;
+            }
+
+            if (wx.$guildId) {
+                header['Guild'] = wx.$guildId;
+            }
+        }
+
         return new Promise(function (resolve, reject) {
             wx.request({
                 url: endpoint,
-                type: method,
+                method: method,
                 dataType: dataType || 'json',
                 contentType: 'application/json',
                 data: method == 'GET' ? params : JSON.stringify(params),
+                header: header,
                 success: function (ret) {
                     resolve(ret);
                 },
                 error: function (err) {
                     reject(err);
-                },
-                beforeSend: function (xhr) {
-                    if (window.app !== undefined && app.user.token) {
-                        xhr.setRequestHeader('Authorization', 'Token ' + app.user.token); 
-                    }
-                    if (window.app !== undefined && app.guildId) {
-                        xhr.setRequestHeader('Guild', app.guildId);
-                    }
                 }
             });
         });

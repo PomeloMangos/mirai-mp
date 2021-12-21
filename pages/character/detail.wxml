@@ -1,8 +1,94 @@
 <view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
 </view>
-<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
-    <image src="/assets/images/logo.png" alt="" />
+<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}" wx:if="{{ character }}">
+        <image src="{{ host + '/assets/images/class-' + character.class + '.png' }}" />
+        <span class="page-title" class="class-{{ character.class }}">
+            {{ character.name }} <small>(iLvl {{ character.highestItemLevel }})</small>
+        </span>
 </view>
 <view class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
     <a bindtap="onBackBtnClicked"><i class="fa fa-angle-left"></i> 返回</a>
+</view>
+
+<view class="wrapper {{ isFullScreen ? 'full' : '' }}">
+    <div class="tab-outer" style="margin-bottom: 15px">
+        <a class="tab-item" data-active="dps" bindtap="onTabBtnClicked" class="tab-item {{ active == 'dps' ? 'active' : '' }}"><i class="fa fa-flag-checkered"></i> 输出经验</a>
+        <a class="tab-item" data-active="hps" bindtap="onTabBtnClicked" class="tab-item {{ active == 'hps' ? 'active' : '' }}"><i class="fa fa-flag-checkered"></i> 治疗经验</a>
+        <a class="tab-item" data-active="item" bindtap="onTabBtnClicked" class="tab-item {{ active == 'item' ? 'active' : '' }}"><i class="fa fa-shield"></i> 装备列表</a>
+    </div>
+
+    <div wx:if="{{ active == 'dps' }}">
+        <table class="wcl-table" style="table-layout: auto">
+            <thead>
+                <tr>
+                    <th>首领名称</th>
+                    <th>装等</th>
+                    <th>%</th>
+                    <th>击杀</th>
+                    <th>最快</th>
+                    <th>最慢</th>
+                    <th>最高DPS</th>
+                    <th>最低DPS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr wx:for="{{ dps }}" wx:for-item="boss" data-boss="{{ boss.Name }}">
+                    <td>{{ boss.Name }}</td>
+                    <td>{{ boss.ItemLevel }}</td>
+                    <td class="{{ boss.ParseCss }}">{{ boss.Parse }}</td>
+                    <td>{{ boss.Killed }}</td>
+                    <td>{{ boss.Fastest }}</td>
+                    <td>{{ boss.Slowest }}</td>
+                    <td>{{ boss.Highest }}</td>
+                    <td>{{ boss.Lowest }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div wx:if="{{ active == 'hps' }}">
+        <table class="wcl-table" style="table-layout: auto">
+            <thead>
+                <tr>
+                    <th>首领名称</th>
+                    <th>装等</th>
+                    <th>%</th>
+                    <th>击杀</th>
+                    <th>最快</th>
+                    <th>最慢</th>
+                    <th>最高HPS</th>
+                    <th>最低HPS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr wx:for="{{ hps }}" wx:for-item="boss">
+                    <td>{{ boss.Name }}</td>
+                    <td>{{ boss.ItemLevel }}</td>
+                    <td class="{{ boss.ParseCss }}">{{ boss.Parse }}</td>
+                    <td>{{ boss.Killed }}</td>
+                    <td>{{ boss.Fastest }}</td>
+                    <td>{{ boss.Slowest }}</td>
+                    <td>{{ boss.Highest }}</td>
+                    <td>{{ boss.Lowest }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div wx:if="{{ active == 'item' }}">
+        <table class="wcl-table">
+            <thead>
+                <tr>
+                    <th>装备名称</th>
+                    <th>装等</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr wx:for="{{ items }}">
+                    <td class="{{ item.itemCss }}">
+                        <image class="class-img" src="{{ item.imageUrl }}" /> <span>{{ item.name }}</span>
+                    </td>
+                    <td>{{ item.itemLevel }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </view>

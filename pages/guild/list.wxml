@@ -9,14 +9,14 @@
 </view>
 
 <view class="guild-wrapper {{ isFullScreen ? 'full' : '' }}">
-    <view class="guild-item" wx:if="result" wx:for="{{ result.data }}">
+    <view class="guild-item" wx:if="result" wx:for="{{ result.data }}" bindtap="openGuild" data-id="{{ item.id }}">
         <table>
             <colgroup>
                 <col style="width: 50px;" />
             </colgroup>
             <tr>
                 <td>
-                    <image wx:if="{{ !item.guildListImageUrl }}" src="/assets/images/guild-image.jpg" alt="" class="img-responsive" />
+                    <image wx:if="{{ !item.guildListImageUrl }}" src="{{ host }}/assets/images/guild-image.jpg" alt="" class="img-responsive" />
                     <image wx:else src="{{ host + item.guildListImageUrl }}" alt="" class="img-responsive" />
                 </td>
                 <td>
