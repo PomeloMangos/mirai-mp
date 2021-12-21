@@ -3,7 +3,6 @@
 <view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
     <image src="/assets/images/logo.png" alt="" />
 </view>
-
-<view class="main {{ isFullScreen ? 'full' : '' }}">
-    <h2>Hello World</h2>
+<view class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
+    <a bindtap="onBackBtnClicked"><i class="fa fa-angle-left"></i> 返回</a>
 </view>

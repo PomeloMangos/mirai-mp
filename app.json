@@ -1,31 +1,15 @@
 {
-  "pages": [
-    "custom-tab-bar/index",
-    "pages/index/index",
-    "pages/activity/index",
-    "pages/logs/logs"
-  ],
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationStyle": "custom",
-    "navigationBarBackgroundColor": "#292845",
-    "navigationBarTitleText": "Mirai 魔兽公会报名帖",
-    "navigationBarTextStyle": "white"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
-  "tabBar": {
-    "custom": true,
-    "color": "#000000",
-    "selectedColor": "#000000",
-    "backgroundColor": "#000000",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    },{
-      "pagePath": "pages/activity/index",
-      "text": "活动"
-    }]
-  }
+    "pages": [
+        "pages/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#292845",
+        "navigationBarTitleText": "Mirai 魔兽公会报名帖",
+        "navigationBarTextStyle": "white"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
 }
