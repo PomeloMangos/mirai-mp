@@ -54,5 +54,11 @@
                 </td>
             </tr>
         </table>
+
+        <table class="form-table reg-table" wx:if="{{ !grouped[idx].length }}" style="margin-top: -30px;">
+            <tr>
+                <td>该职责尚无人报名</td>
+            </tr>
+        </table>
     </view>
 </view>

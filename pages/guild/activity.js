@@ -24,6 +24,7 @@ Component({
         },
         loadActivities: function(status, page) {
             let self = this;
+            this.setData({ loaded: false });
             qv.get(`${this.data.host}/api/activity?page=${page || 1}&status=${status}`).then(result => {
                 let res = result.data;
                 for (let i = 0; i < res.data.length; ++i) {

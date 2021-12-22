@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "activity-reg": "activity/reg"
+    "activity-reg": "activity/reg",
+    "activity-grid": "activity/grid"
   }
 }

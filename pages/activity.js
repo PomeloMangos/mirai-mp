@@ -18,7 +18,8 @@ Page({
         activity: null,
         raids: [],
         bossNames: null,
-        itemSets: null
+        itemSets: null,
+        loaded: false
     },
     onLoad: function(options) {
         this.setData(options);
@@ -109,6 +110,7 @@ Page({
         });
     },
     loadActivity: function() {
+        this.setData({ loaded: false });
         wx.showLoading({
           title: '正在加载活动...',
         })
@@ -119,17 +121,26 @@ Page({
               title: activity.name,
             })
 
+            // 获取当前活动相关的BOSS名称
             self.setData({
                 bosses: self.getBossNames(activity.raids)
             });
 
+            // 预处理报名信息
             for (let i = 0; i < activity.registrations.length; ++i) {
                 let reg = activity.registrations[i];
                 self.handleRegistration(reg);
             }
 
+            // 处理活动扩展信息
+            activity.grids = JSON.parse(activity.extension1);
+            activity.tasks = JSON.parse(activity.extension2);
+            activity.ledger = JSON.parse(activity.extension3);
+
+            // Done
             self.setData({ 
-                activity: activity
+                activity: activity,
+                loaded: true
             });
             wx.hideLoading({});
         });
