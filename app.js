@@ -15,7 +15,7 @@ App({
     })
   },
   globalData: {
-    host: 'https://mwow.org',
+    host: 'https://gbgbg.cn',
     isFullScreen: false
   }
 })

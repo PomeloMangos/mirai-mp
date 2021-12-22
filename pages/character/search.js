@@ -22,7 +22,7 @@ Component({
                     title: "错误",
                     content: "请填写服务器名称",
                     showCancel: false
-                })
+                });
                 return;
             }
 

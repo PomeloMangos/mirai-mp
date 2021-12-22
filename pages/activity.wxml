@@ -1,6 +1,8 @@
 <view>
     <activity-reg wx:if="{{ activity && active == 'reg' }}" activity="{{ activity }}"></activity-reg>
     <activity-grid wx:if="{{ activity && active == 'grid' }}" activity="{{ activity }}"></activity-grid>
+    <activity-task wx:if="{{ activity && active == 'task' }}" activity="{{ activity }}"></activity-task>
+    <activity-submit wx:if="{{ activity && active == 'my' }}" activity="{{ activity }}"></activity-submit>
 </view>
 
 <view class="{{ isFullScreen ? 'footer footer-full' : 'footer' }}" wx:if="{{ loaded }}">
