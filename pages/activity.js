@@ -138,13 +138,15 @@ Page({
             activity.ledger = JSON.parse(activity.extension3);
 
             // 处理任务玩家
-            for (let i = 0; i < activity.tasks.groups.length; ++i) {
-                let taskGroup = activity.tasks.groups[i];
-                for (let j = 0; j < taskGroup.tasks.length; ++j) {
-                    for (let k = 0; k < taskGroup.tasks[j].players.length; ++k) {
-                        let reg = activity.registrations.filter(x => x.id == taskGroup.tasks[j].players[k]);
-                        if (reg.length) {
-                            taskGroup.tasks[j].players[k] = reg[0];
+            if (activity.tasks.groups) {
+                for (let i = 0; i < activity.tasks.groups.length; ++i) {
+                    let taskGroup = activity.tasks.groups[i];
+                    for (let j = 0; j < taskGroup.tasks.length; ++j) {
+                        for (let k = 0; k < taskGroup.tasks[j].players.length; ++k) {
+                            let reg = activity.registrations.filter(x => x.id == taskGroup.tasks[j].players[k]);
+                            if (reg.length) {
+                                taskGroup.tasks[j].players[k] = reg[0];
+                            }
                         }
                     }
                 }

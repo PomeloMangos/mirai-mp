@@ -137,9 +137,9 @@
     <div class="dialog-footer">
         <table>
             <tr>
-                <td><a wx:if="{{ activity.status == 1 }}" bindtap="onSubmitClicked">报名</a><span style="color: #888" wx:else>无法报名</span></td>
-                <td><a style="color: rgb(255,128,128);" bindtap="deleteSelectedCharacter">删除角色</a></td>
-                <td><a bindtap="closeSubmitDialog">取消</a></td>
+                <td bindtap="onSubmitClicked"><a wx:if="{{ activity.status == 1 }}">报名</a><span style="color: #888" wx:else>无法报名</span></td>
+                <td bindtap="deleteSelectedCharacter"><a style="color: rgb(255,128,128);">删除角色</a></td>
+                <td bindtap="closeSubmitDialog"><a>取消</a></td>
             </tr>
         </table>
     </div>
@@ -152,7 +152,7 @@
             <image class="class-img" src="{{ host + '/assets/images/class-' + selectedCharacter.class + '.png' }}" />
             {{ selectedCharacter.name }}
         </span>
-        <a class="right" v-on:click="mobile.ch = null"><i class="fa fa-close"></i></a>
+        <a class="right" bindtap="closeSubmitDialog"><i class="fa fa-close"></i></a>
     </div>
     <div class="dialog-footer">
         <table>
@@ -161,8 +161,8 @@
                     <a wx:if="{{ selectedCharacter._reg.status == 3 }}">取消请假</a>
                     <a wx:else>请假</a>
                 </td>
-                <td><a style="color: rgb(255,128,128);" v-on:click="mobileDeleteCh">删除角色</a></td>
-                <td><a v-on:click="mobile.ch = null">取消</a></td>
+                <td bindtap="deleteSelectedCharacter"><a style="color: rgb(255,128,128);">删除角色</a></td>
+                <td bindtap="closeSubmitDialog"><a>取消</a></td>
             </tr>
         </table>
     </div>

@@ -192,6 +192,7 @@ Component({
             this.takeLeave(ch, ch._reg.status != 3);
         },
         takeLeave: function (ch, takeLeave) {
+            let reg = ch._reg;
             reg.status = takeLeave ? 3 : 0;
             wx.showLoading({
                 title: takeLeave ? '请假中...' : '取消请假中...',
