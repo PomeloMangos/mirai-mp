@@ -17,8 +17,8 @@
             <img src="/assets/images/task.svg" />
             <span>{{ task.text }}</span>
             <div class="task-players">
-                <span wx:for="{{ task.players }}" wx:for="reg" class="task-player class-{{ reg.class }}">
-                    <img src="{{ host + '/assets/images/class-' + reg.class + '.png' }}" class="class-img" />
+                <span wx:for="{{ task.players }}" wx:for-item="reg" class="task-player class-{{ reg.class }}">
+                    <image src="{{ host + '/assets/images/class-' + reg.class + '.png' }}" class="class-img" />
                     <i class="fa fa-shield" wx:if="{{ reg.role == 0 }}"></i>
                     <i class="fa fa-plus-circle" wx:if="{{ reg.role == 2 }}"></i>
                     <i class="fa fa-money" wx:if="{{ reg.role == 3 }}"></i>

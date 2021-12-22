@@ -29,7 +29,11 @@ Component({
 
     methods: {
         onBackBtnClicked: function () {
-            wx.navigateBack();
+            wx.navigateBack().catch(() => {
+                wx.redirectTo({
+                  url: 'guild?id=' + this.data.activity.guildId,
+                })
+            });
         },
         saveCharacters: function(characters) {
             console.warn(this.data.activity.realm);

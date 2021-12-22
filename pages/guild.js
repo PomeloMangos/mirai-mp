@@ -39,10 +39,16 @@ Page({
     loadGuild: function() {
         let self = this;
         return qv.get(`${this.data.host}/api/guild/${this.data.id}`).then(result => {
-            self.setData({ guild: result.data.data });
+            let guild = result.data.data;
+            wx.setNavigationBarTitle({
+                title: guild.name,
+            })
+            self.setData({ guild: guild });
         });
     },
     onShareAppMessage: function () {
-
+        return {
+            title: '【公会活动】' + this.data.guild.name
+        };
     }
 })

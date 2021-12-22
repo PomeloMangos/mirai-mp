@@ -37,8 +37,12 @@ Component({
 
     methods: {
         onBackBtnClicked: function () {
-            wx.navigateBack();
-        }
+            wx.navigateBack().catch(() => {
+                wx.redirectTo({
+                  url: 'guild?id=' + this.data.activity.guildId,
+                })
+            });
+        },
     },
 
     lifetimes: {
@@ -118,35 +122,39 @@ Component({
                 if (reg.charactor) {
                     reg._equipments = reg.charactor.equipments.split(',').map(x => x.trim());
                     let sets = wx.$activity.data.itemSets[reg.role.toString()];
-                    for (let j = 0; j < sets.length; ++j) {
-                        try {
-                            reg.setName = sets[j].name;
-                            reg.setCount = 0;
-    
-                            for (let k = 0; k < sets[j].items.length; ++k) {
-                                if (reg._equipments.some(x => x == sets[j].items[k])) {
-                                    ++reg.setCount;
+                    if (sets) {
+                        for (let j = 0; j < sets.length; ++j) {
+                            try {
+                                reg.setName = sets[j].name;
+                                reg.setCount = 0;
+        
+                                for (let k = 0; k < sets[j].items.length; ++k) {
+                                    if (reg._equipments.some(x => x == sets[j].items[k])) {
+                                        ++reg.setCount;
+                                    }
                                 }
+        
+                                if (reg.setCount > 0) {
+                                    break;
+                                }
+                            } catch (e) {
+                                continue;
                             }
-    
-                            if (reg.setCount > 0) {
-                                break;
-                            }
-                        } catch (e) {
-                            continue;
                         }
                     }
                 }
 
                 // 处理经验着色
-                if (reg.bossPassed == bossAmount) {
-                    reg._bossCss = 'purple';
-                } else if (reg.bossPassed > bossAmount / 2) {
-                    reg._bossCss = 'blue';
-                } else if (reg.bossPassed > 0) {
-                    reg._bossCss = 'green';
-                } else {
-                    reg._bossCss = 'gray';
+                if (reg.bossPassed) {
+                    if (reg.bossPassed == bossAmount) {
+                        reg._bossCss = 'purple';
+                    } else if (reg.bossPassed > bossAmount / 2) {
+                        reg._bossCss = 'blue';
+                    } else if (reg.bossPassed > 0) {
+                        reg._bossCss = 'green';
+                    } else {
+                        reg._bossCss = 'gray';
+                    }
                 }
             }
 
