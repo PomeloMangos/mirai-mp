@@ -10,3 +10,7 @@
     vertical-align: top;
     line-height: 42px;
 }
+
+.character-name {
+    font-weight: bold;
+}
