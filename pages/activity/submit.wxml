@@ -18,13 +18,13 @@
             <td class="{{ 'class-' + ch.class }}">
                 <image src="{{ host + '/assets/images/class-' + ch.class + '.png' }}" class="class-img" />
                 {{ ch.name }}
-                <template wx:if="ch._registered">
+                <span wx:if="ch._registered">
                     <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 0 }}">待审核</span>
                     <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 1 }}">被拒绝</span>
                     <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 2 }}">替补队员</span>
                     <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 3 }}">已请假</span>
                     <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 4 }}">已通过</span>
-                </template>
+                </span>
             </td>
         </tr>
         <tr wx:if="{{ !myCharacters.length }}">
@@ -107,6 +107,62 @@
             <tr>
                 <td><a bindtap="selectClass">确定</a></td>
                 <td><a bindtap="closeSelectDialog">取消</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- 报名框 -->
+<div class="dialog" style="margin-top:-215px" wx:if="{{ ui.submitDialog && !selectedCharacter._registered }}">
+    <div class="dialog-header">
+        <span class="{{ 'class-' + selectedCharacter.class }}">
+            <image class="class-img" src="{{ host + '/assets/images/class-' + selectedCharacter.class + '.png' }}" />
+            {{ selectedCharacter.name }}
+        </span>
+        <a class="right" bindtap="closeSubmitDialog"><i class="fa fa-close"></i></a>
+    </div>
+    <div class="dialog-body" style="padding: 0 15px">
+        <div style="padding: 15px 0; border-bottom: 0.8px solid #1e1d32;">
+            <div class="section-title">职责</div>
+            <div class="dialog-select-row" data-role="1" bindtap="onRoleClicked"><div class="ratio {{ ui.selectedRole == 1 ? 'selected' : '' }}"><div></div></div> 输出</div>
+            <div class="dialog-select-row" data-role="0" bindtap="onRoleClicked"><div class="ratio {{ ui.selectedRole == 0 ? 'selected' : '' }}"><div></div></div> 坦克 <span wx:if="{{ !selectedCharacter._canTank }}">(不可用)</span></div>
+            <div class="dialog-select-row" data-role="2" bindtap="onRoleClicked"><div class="ratio {{ ui.selectedRole == 2 ? 'selected' : '' }}"><div></div></div> 治疗 <span wx:if="{{ !selectedCharacter._canHeal }}">(不可用)</span></div>
+            <div class="dialog-select-row" data-role="3" bindtap="onRoleClicked"><div class="ratio {{ ui.selectedRole == 3 ? 'selected' : '' }}"><div></div></div> 消费</div>
+        </div>
+        <div style="padding-bottom: 15px; margin-top: 10px">
+            <div class="section-title">备注</div>
+            <input class="textbox" model:value="{{ hint }}" placeholder="点击以输入备注..." />
+        </div>
+    </div>
+    <div class="dialog-footer">
+        <table>
+            <tr>
+                <td><a wx:if="{{ activity.status == 1 }}" bindtap="onSubmitClicked">报名</a><span style="color: #888" wx:else>无法报名</span></td>
+                <td><a style="color: rgb(255,128,128);" bindtap="deleteSelectedCharacter">删除角色</a></td>
+                <td><a bindtap="closeSubmitDialog">取消</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- 请假弹窗 -->
+<div class="dialog" style="margin-top:-53px" wx:if="{{ ui.submitDialog && selectedCharacter._registered }}">
+    <div class="dialog-header">
+        <span class="{{ 'class-' + selectedCharacter.class }}">
+            <image class="class-img" src="{{ host + '/assets/images/class-' + selectedCharacter.class + '.png' }}" />
+            {{ selectedCharacter.name }}
+        </span>
+        <a class="right" v-on:click="mobile.ch = null"><i class="fa fa-close"></i></a>
+    </div>
+    <div class="dialog-footer">
+        <table>
+            <tr>
+                <td bindtap="onTakeLeaveClicked">
+                    <a wx:if="{{ selectedCharacter._reg.status == 3 }}">取消请假</a>
+                    <a wx:else>请假</a>
+                </td>
+                <td><a style="color: rgb(255,128,128);" v-on:click="mobileDeleteCh">删除角色</a></td>
+                <td><a v-on:click="mobile.ch = null">取消</a></td>
             </tr>
         </table>
     </div>

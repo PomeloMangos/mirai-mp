@@ -1,3 +1,5 @@
+const qv = require("../../utils/qv");
+
 Component({
     properties: {
         activity: null
@@ -17,8 +19,12 @@ Component({
         },
         ui: {
             selectClass: false,
-            selectClassValue: null
-        }
+            selectClassValue: null,
+            submitDialog: false,
+            selectedRole: null
+        },
+        selectedCharacter: null,
+        submitHint: ''
     },
 
     methods: {
@@ -73,6 +79,7 @@ Component({
             }
 
             let characters = this.data.myCharacters;
+            this.handleCharacter(this.data.activity, character);
             characters.push(character);
             this.saveCharacters(characters);
             this.setData({
@@ -90,12 +97,116 @@ Component({
             if (ch._registered) {
                 ch._reg = activity.registrations.filter(x => x.name == ch.name)[0];
             }
+            ch._canTank = this.canTank(ch.class);
+            ch._canHeal = this.canHeal(ch.class);
+            console.warn(ch);
         },
         canTank: function (cls) {
-            return !!(35 & cls);
+            return 35 & parseInt(cls);
         },
         canHeal: function (cls) {
-            return !!(298 & cls);
+            return 298 & parseInt(cls);
+        },
+        onCharacterClicked: function(event) {
+            let ch = event.currentTarget.dataset.character;
+            this.handleCharacter(this.data.activity, ch);
+            this.setData({
+                selectedCharacter: ch,
+                'ui.submitDialog': true
+            });
+        },
+        closeSubmitDialog: function() {
+            this.setData({
+                selectedCharacter: null,
+                'ui.submitDialog': false
+            });
+        },
+        deleteSelectedCharacter: function() {
+            let ch = this.data.myCharacters.filter(x => x.name == this.data.selectedCharacter.name)[0];
+            let idx = this.data.myCharacters.indexOf(ch);
+            if (idx >= 0) {
+                this.data.myCharacters.splice(idx, 1);
+                this.setData({
+                    myCharacters: this.data.myCharacters
+                });
+            }
+
+            this.closeSubmitDialog();
+        },
+        onRoleClicked: function(event) {
+            let role = event.currentTarget.dataset.role;
+            if (role == 0 && !this.canTank(this.data.selectedCharacter.class)) {
+                return;
+            }
+            if (role == 2 && !this.canHeal(this.data.selectedCharacter.class)) {
+                return;
+            }
+            this.setData({
+                'ui.selectedRole': role
+            });
+        },
+        onSubmitClicked: function() {
+            if (!this.data.ui.selectedRole) {
+                wx.showModal({
+                    title: "错误",
+                    content: "请选择一个职责",
+                    showCancel: false
+                });
+                return;
+            }
+
+            let self = this;
+            let body = {
+                name: this.data.selectedCharacter.name,
+                role: this.data.ui.selectedRole,
+                hint: this.hint,
+                class: this.data.selectedCharacter.class
+            };
+
+            wx.showLoading({
+                title: '报名中...',
+            })
+            qv.post(`${this.data.host}/api/activity/${this.data.activity.id}/registrations`, body).then(data => {
+                wx.hideLoading({});
+                wx.$activity.loadActivity();
+                self.setData({
+                    selectedCharacter: null,
+                    'ui.selectedRole': false,
+                    'ui.submitDialog': false
+                });
+                wx.redirectTo({
+                  url: 'activity?id=' + this.data.activity.id,
+                })
+                wx.showToast({
+                  title: '报名成功',
+                })
+            });
+        },
+        onTakeLeaveClicked: function() {
+            let ch = this.data.selectedCharacter;
+            console.log(ch);
+            this.takeLeave(ch, ch._reg.status != 3);
+        },
+        takeLeave: function (ch, takeLeave) {
+            reg.status = takeLeave ? 3 : 0;
+            wx.showLoading({
+                title: takeLeave ? '请假中...' : '取消请假中...',
+            })
+            let self = this;
+            return qv.put(this.data.host + '/api/activity/' + this.data.activity.id + '/registrations/' + reg.id, { status: reg.status, role: reg.role }).then(() => {
+                wx.hideLoading({});
+                self.setData({
+                    selectedCharacter: null,
+                    'ui.selectedRole': false,
+                    'ui.submitDialog': false
+                });
+                wx.redirectTo({
+                  url: 'activity?id=' + this.data.activity.id,
+                })
+                wx.showToast({
+                  title: '操作成功',
+                })
+            });
         },
     },
 
