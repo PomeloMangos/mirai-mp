@@ -44,6 +44,8 @@
                                 <span class="reg-icon" style="margin-left: 8px"><i class="fa fa-star"></i></span>
                                 <span wx:if="{{ reg.charactor }}" class="{{ reg._bossCss }}"> {{ reg.bossPassed || 0 }} / {{ bossAmount }}</span>
                                 <span wx:else class="gray"> 未知</span>
+                                <image class="class-img avatar" style="margin-left: 8px" wx:if="{{ reg.avatarUrl }}" src="{{ reg.avatarUrl }}" />
+                                <span wx:if="{{ reg.weChat }}" class="wechat-nickname">{{ reg.weChat }}</span>
                                 <span wx:if="{{ reg.hint }}">
                                     <span class="reg-icon" style="margin-left: 8px"><i class="fa fa-comment-o"></i></span>
                                     <span class="hint">{{ reg.hint }}</span>

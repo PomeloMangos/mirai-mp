@@ -154,6 +154,30 @@ Component({
             });
         },
         onSubmitClicked: function() {
+            let expire = wx.getStorageSync('userInfoExpire');
+            if (!expire || new Date().getTime() > expire) {
+                wx.removeStorageSync('userInfo');
+                wx.removeStorageSync('userInfoExpire');
+            }
+            let userInfo = wx.getStorageSync('userInfo');
+            let self = this;
+            if (userInfo) {
+                self.doSubmit(userInfo.nickName, userInfo.avatarUrl);
+            } else {
+                wx.getUserProfile({
+                  desc: '用于完善报名信息',
+                  success: function(res) {
+                    wx.setStorageSync('userInfoExpire', new Date().getTime() + 1000 * 60 * 60 * 24 * 14);
+                    wx.setStorageSync('userInfo', res.userInfo)
+                    self.doSubmit(res.userInfo.nickName, res.userInfo.avatarUrl);
+                  },
+                  fail: function() {
+                    self.doSubmit(null, null);
+                  }
+                })
+            }
+        },
+        doSubmit: function(weChat, avatarUrl) {
             if (!this.data.ui.selectedRole) {
                 wx.showModal({
                     title: "错误",
@@ -168,7 +192,9 @@ Component({
                 name: this.data.selectedCharacter.name,
                 role: this.data.ui.selectedRole,
                 hint: this.hint,
-                class: this.data.selectedCharacter.class
+                class: this.data.selectedCharacter.class,
+                weChat: weChat,
+                avatarUrl: avatarUrl
             };
 
             wx.showLoading({
@@ -184,10 +210,10 @@ Component({
                 });
                 wx.redirectTo({
                   url: 'activity?id=' + this.data.activity.id,
-                })
+                });
                 wx.showToast({
                   title: '报名成功',
-                })
+                });
             });
         },
         onTakeLeaveClicked: function() {

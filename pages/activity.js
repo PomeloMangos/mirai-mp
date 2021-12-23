@@ -167,5 +167,10 @@ Page({
         return {
             title: this.data.activity.name
         };
+    },
+    onShareTimeline: function() {
+        return {
+            title: this.data.activity.name
+        }
     }
 })

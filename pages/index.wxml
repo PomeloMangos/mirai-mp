@@ -27,6 +27,10 @@
                 <div class="btn-icon"><i class="fa fa-search"></i></div>
                 <div class="btn-text">角色</div>
             </view>
+            <view class="table-td" bindtap="navigateToMy">
+                <div class="btn-icon"><i class="fa fa-user"></i></div>
+                <div class="btn-text">我的</div>
+            </view>
         </view>
     </view>
 </view>

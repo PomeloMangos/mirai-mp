@@ -14,3 +14,15 @@
 .character-name {
     font-weight: bold;
 }
+
+.class-img.avatar {
+    border-radius: 3px;
+    width: 16px;
+    height: 16px;
+    margin-top: -3px;
+    margin-right: 3px;
+}
+
+.wechat-nickname {
+    color: #ccc;
+}

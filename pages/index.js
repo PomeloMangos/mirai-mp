@@ -3,10 +3,6 @@
 const app = getApp();
 
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
         isFullScreen: app.globalData.isFullScreen,
         active: 'home',
@@ -43,6 +39,11 @@ Page({
     navigateToGuild: function(guildId) {
         wx.navigateTo({
           url: `guild?id=${guildId}`,
+        })
+    },
+    navigateToMy: function() {
+        wx.navigateTo({
+          url: 'my',
         })
     },
     onShareAppMessage: function () {

@@ -816,3 +816,7 @@ thead, tbody, tfoot {
   text-align: center;
   color: #3dd0d8;
 }
+
+.btn-text {
+  font-size: 14px;
+}

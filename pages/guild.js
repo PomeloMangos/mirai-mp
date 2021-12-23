@@ -18,9 +18,12 @@ Page({
         }
     },
     onLoad: function(options) {
-        this.setData(options);
+        let guildId = options.id || options.scene;
+        this.setData({
+            id: guildId
+        });
         wx.$guild = this;
-        wx.$guildId = options.id || options.scene;
+        wx.$guildId = guildId;
         this.loadGuild();
         this.switchTab2('home');
     },
