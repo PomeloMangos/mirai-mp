@@ -22,7 +22,9 @@ Page({
         loaded: false
     },
     onLoad: function(options) {
-        this.setData(options);
+        this.setData({
+            id: options.id || options.scene
+        });
         wx.$activity = this;
         let self = this;
         this.loadRaids().then(() => {

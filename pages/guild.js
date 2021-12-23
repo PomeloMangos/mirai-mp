@@ -20,7 +20,7 @@ Page({
     onLoad: function(options) {
         this.setData(options);
         wx.$guild = this;
-        wx.$guildId = options.id;
+        wx.$guildId = options.id || options.scene;
         this.loadGuild();
         this.switchTab2('home');
     },

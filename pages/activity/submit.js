@@ -100,6 +100,10 @@ Component({
             ch._registered = activity.registrations.filter(x => x.name == ch.name).length > 0;
             if (ch._registered) {
                 ch._reg = activity.registrations.filter(x => x.name == ch.name)[0];
+            } else {
+                if (ch._reg) {
+                    delete ch._reg;
+                }
             }
             ch._canTank = this.canTank(ch.class);
             ch._canHeal = this.canHeal(ch.class);
