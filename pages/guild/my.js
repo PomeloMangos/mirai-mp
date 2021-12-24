@@ -7,7 +7,8 @@ Component({
         guild: null,
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
-        defaultGuild: null
+        defaultGuild: null,
+        guildPermission: {}
     },
 
     methods: {
@@ -34,6 +35,11 @@ Component({
                 wx.$guildId = null;
                 wx.navigateBack();
             });
+        },
+        onCreateActivityClicked: function() {
+            wx.navigateTo({
+              url: 'guild/create-activity?id=' + this.data.guild.id,
+            })
         }
     },
 
@@ -41,7 +47,8 @@ Component({
         attached: function() {
             this.setData({ 
                 guild: this.properties.guild,
-                defaultGuild: wx.getStorageSync('defaultGuild')
+                defaultGuild: wx.getStorageSync('defaultGuild'),
+                guildPermission: !wx.$guild ? {} : wx.$guild.data.permission
             });
         }
     }

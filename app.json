@@ -4,7 +4,8 @@
         "pages/guild",
         "pages/activity",
         "pages/ledger",
-        "pages/my"
+        "pages/my",
+        "pages/guild/create-activity"
     ],
     "window": {
         "backgroundTextStyle": "dark",

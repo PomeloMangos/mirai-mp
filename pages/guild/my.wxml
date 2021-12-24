@@ -26,4 +26,15 @@
 
         <div class="section-title">您当前已经将{{guild.name}}设置为常驻公会，点击取消后，小程序初始化时将进入公会列表。</div>
     </view>
+
+    <view style="margin-top: 45px" wx:if="{{ guildPermission.guildManager }}">
+        <div class="section-title">创建公会活动</div>
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr>
+                <td class="row-btn" bindtap="onCreateActivityClicked">创建活动</td>
+            </tr>
+        </table>
+
+        <div class="section-title">您是{{guild.name}}公会的管理员，您可以点击上面的按钮发起一个公会活动。</div>
+    </view>
 </view>

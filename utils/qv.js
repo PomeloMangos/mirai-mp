@@ -53,6 +53,20 @@ var qv = {
         else
             return true;
     },
+    requestWithCredential: function(endpoint, method, params, dataType) {
+        let self = this;
+        if (!wx.$token) {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    self.requestWithCredential(endpoint, method, params, dataType)
+                        .then(data => res(data))
+                        .catch(err => rej(err));
+                }, 200);
+            });
+        } else {
+            return this.request(endpoint, method, params, dataType);
+        }
+    },
     request: function (endpoint, method, params, dataType) {
         var self = this;
         var header = {};

@@ -21,7 +21,7 @@ const isLeapYear = function (year) {
 const now = new Date();
 const years = [];
 const beginYear = 1990;
-for (var i = beginYear; i <= now.getFullYear(); i++) {
+for (var i = beginYear; i <= now.getFullYear() + 10; i++) {
     years.push(i + "年");
 }
 const months = [];

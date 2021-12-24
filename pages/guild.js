@@ -15,6 +15,10 @@ Page({
         guild: null,
         active: null,
         layoutVariables: {
+        },
+        permission: {
+            guildManager: false,
+            guildOwner: false
         }
     },
     onLoad: function(options) {
@@ -47,6 +51,13 @@ Page({
                 title: guild.name,
             })
             self.setData({ guild: guild });
+            return self.getGuildPermissions();
+        });
+    },
+    getGuildPermissions: function() {
+        let self = this;
+        qv.requestWithCredential(this.data.host + '/api/user/permission', 'GET').then(result => {
+            self.setData({ permission: result.data.data });
         });
     },
     onShareAppMessage: function () {

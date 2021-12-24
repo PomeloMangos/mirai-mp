@@ -26,10 +26,12 @@ App({
     return qv.post(host + '/api/openid/session', { jsCode: code, displayName: displayName }).then(result => {
       self.globalData.session = result.data.data;
       wx.$token = self.globalData.session.token;
+      self.globalData.launched = true;
     });
   },
   globalData: {
     host: host,
-    isFullScreen: false
+    isFullScreen: false,
+    launched: false
   }
 })

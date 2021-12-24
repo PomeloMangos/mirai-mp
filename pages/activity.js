@@ -165,8 +165,7 @@ Page({
     },
     openLedger: function() {
         wx.navigateTo({
-          url: 'ledger?id=' + this.data.activity.id,
-          fail: function(err) { console.error(err) }
+          url: 'ledger?id=' + this.data.activity.id
         });
     },
     onShareAppMessage: function () {

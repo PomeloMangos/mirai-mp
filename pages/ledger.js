@@ -73,6 +73,10 @@ Page({
         activity.ledger.statistics.summary = this.generateLedgerSumamry(activity.ledger);
     },
     generateTopConsumers: function (ledger, activity) {
+        if (!ledger.income) {
+            return null;
+        }
+        
         var ret = [];
         var tmp = {};
         for (var i = 0; i < ledger.income.length; ++i) {
@@ -102,6 +106,10 @@ Page({
         return ret;
     },
     generateLedgerSumamry: function (ledger) {
+        if (!ledger.income) {
+            return null;
+        }
+
         var ret = {
             total: 0,
             expense: 0,
