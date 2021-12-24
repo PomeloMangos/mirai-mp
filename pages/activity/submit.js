@@ -1,4 +1,5 @@
 const qv = require("../../utils/qv");
+let lock = false;
 
 Component({
     properties: {
@@ -178,12 +179,15 @@ Component({
             }
         },
         doSubmit: function(weChat, avatarUrl) {
+            if (lock) { return; }
+            lock = true;
             if (!this.data.ui.selectedRole) {
                 wx.showModal({
                     title: "错误",
                     content: "请选择一个职责",
                     showCancel: false
                 });
+                lock = false;
                 return;
             }
 
@@ -214,6 +218,9 @@ Component({
                 wx.showToast({
                   title: '报名成功',
                 });
+                lock = false;
+            }).catch(err => {
+                lock = false;
             });
         },
         onTakeLeaveClicked: function() {

@@ -3,6 +3,7 @@
         "pages/index",
         "pages/guild",
         "pages/activity",
+        "pages/ledger",
         "pages/my"
     ],
     "window": {

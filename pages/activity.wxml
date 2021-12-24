@@ -21,11 +21,11 @@
                 <div class="btn-icon"><i class="fa fa-book"></i></div>
                 <div class="btn-text">任务</div>
             </view>
-            <view wx:if="{{ activity.ledger.income }}" class="table-td" style="color: {{ active == 'ledger' ? '#3dd0d8' : '#c2d4f8' }}" data-active="ledger" bindtap="switchTab">
+            <view wx:if="{{ activity.ledger.income }}" class="table-td" style="color: {{ active == 'ledger' ? '#3dd0d8' : '#c2d4f8' }}" bindtap="openLedger">
                 <div class="btn-icon"><i class="fa fa-money"></i></div>
                 <div class="btn-text">账本</div>
             </view>
-            <view class="table-td" style="color: {{ active == 'my' ? '#3dd0d8' : '#c2d4f8' }}" data-active="my" bindtap="switchTab">
+            <view class="table-td" wx:if="{{ activity.status != 4 }}" style="color: {{ active == 'my' ? '#3dd0d8' : '#c2d4f8' }}" data-active="my" bindtap="switchTab">
                 <div class="btn-icon"><i class="fa fa-pencil"></i></div>
                 <div class="btn-text">报名</div>
             </view>

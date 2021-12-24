@@ -163,6 +163,12 @@ Page({
             wx.hideLoading({});
         });
     },
+    openLedger: function() {
+        wx.navigateTo({
+          url: 'ledger?id=' + this.data.activity.id,
+          fail: function(err) { console.error(err) }
+        });
+    },
     onShareAppMessage: function () {
         return {
             title: this.data.activity.name
