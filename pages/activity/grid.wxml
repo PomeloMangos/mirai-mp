@@ -27,7 +27,7 @@
                             <div>
                                 <div>
                                     <span class="character-name {{ 'class-' + reg.class }}">
-                                        <image class="class-img" src="{{ host + '/assets/images/class-' + reg.class + '.png' }}" />
+                                        <image class="class-img" src="{{ '/assets/images/class-' + reg.class + '.png' }}" />
                                         {{ reg.name }}
                                     </span>
                                     <span class="right reg-label">

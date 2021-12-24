@@ -11,7 +11,7 @@
                 <div class="btn-icon"><i class="fa fa-pencil"></i></div>
                 <div class="btn-text">个人资料</div>
             </view>
-            <view class="table-td" bindtap="scanQrCode">
+            <view wx:if="{{ false }}" class="table-td" bindtap="scanQrCode">
                 <div class="btn-icon"><i class="fa fa-qrcode"></i></div>
                 <div class="btn-text">扫码登录</div>
             </view>

@@ -1,7 +1,7 @@
 <view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
 </view>
 <view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}" wx:if="{{ character }}">
-        <image src="{{ host + '/assets/images/class-' + character.class + '.png' }}" />
+        <image src="{{ '/assets/images/class-' + character.class + '.png' }}" />
         <span class="page-title" class="class-{{ character.class }}">
             {{ character.name }} <small>(iLvl {{ character.highestItemLevel }})</small>
         </span>

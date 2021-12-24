@@ -91,11 +91,10 @@ Component({
                 if (reg.boss) {
                     for (let j = 0; j < reg.boss.length; ++j) {
                         let boss = reg.boss[j];
-                        let raid = wx.$activity.data.raids.filter(x => x.bossList.indexOf());
+                        let raid = wx.$activity.data.raids.filter(x => x.id == parseInt(activity.raids.split(',')[0].trim()));
                         if (!raid.length) {
                             continue;
                         }
-
                         raid = raid[0];
                         let itemLevel = boss.ItemLevel;
                         if (itemLevel < raid.itemLevelEntrance) {
@@ -155,6 +154,8 @@ Component({
                     } else {
                         reg._bossCss = 'gray';
                     }
+                } else {
+                    reg._bossCss = 'gray';
                 }
             }
 

@@ -184,7 +184,7 @@ table {
 }
 
 .textbox::-webkit-input-placeholder {
-  color: #c2d4f8a0;
+  color: #e2ecffa0;
   line-height: 32px;
 }
 
@@ -818,5 +818,5 @@ thead, tbody, tfoot {
 }
 
 .btn-text {
-  font-size: 14px;
+  font-size: 12px;
 }
