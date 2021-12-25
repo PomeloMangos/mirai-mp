@@ -8,12 +8,25 @@
 </view>
 
 <view class="wrapper {{ isFullScreen ? 'full' : '' }}">
+    <div wx:if="{{ activity.description }}" class="section-title">
+        <span>报名须知</span>
+    </div>
+
+    <table wx:if="{{ activity.description }}" class="form-table" style="margin-bottom: 45px">
+        <tr>
+            <td class="description-text">{{ activity.description }}</td>
+        </tr>
+        <tr wx:if="{{ !myCharacters.length }}">
+            <td style=" line-height: 42px; padding-left: 15px;">您还没有添加任何角色</td>
+        </tr>
+    </table>
+
     <div class="section-title">
         <span wx:if="{{ activity.status == 1 }}">请点击角色进行报名</span>
         <span wx:else>点击角色可请假</span>
     </div>
 
-    <table class="form-table" style="margin-bottom: 30px">
+    <table class="form-table" style="margin-bottom: 45px">
         <tr wx:for="{{ myCharacters }}" wx:for-item="ch" wx:for-index="i" data-character="{{ ch }}" bindtap="onCharacterClicked">
             <td class="{{ 'class-' + ch.class }}">
                 <image src="{{ '/assets/images/class-' + ch.class + '.png' }}" class="class-img" />
@@ -32,7 +45,6 @@
         </tr>
     </table>
 
-    
     <view wx:if="{{ activity.status == 1 }}">
         <div class="section-title">
             <span>添加新角色 (请填写完整角色名)</span>

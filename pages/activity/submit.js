@@ -201,26 +201,63 @@ Component({
                 avatarUrl: avatarUrl
             };
 
-            wx.showLoading({
-                title: '报名中...',
-            })
-            qv.post(`${this.data.host}/api/activity/${this.data.activity.id}/registrations`, body).then(data => {
-                wx.hideLoading({});
-                wx.$activity.loadActivity();
-                self.setData({
-                    selectedCharacter: null,
-                    'ui.selectedRole': false,
-                    'ui.submitDialog': false
+            let p;
+            if (this.data.activity.description) {
+                p = new Promise((res, rej) => {
+                    wx.showModal({
+                        title: '活动须知',
+                        content: this.data.activity.description,
+                        cancelText: '我拒绝',
+                        cancelColor: 'cancelColor',
+                        confirmText: '我接受',
+                        success: function(result) {
+                            if (result.confirm) {
+                                res();
+                            } else {
+                                lock = false;
+                                wx.showToast({
+                                  title: '报名取消',
+                                  icon: 'none'
+                                });
+                                rej();
+                            }
+                        },
+                        fail: function() {
+                            lock = false;
+                            wx.showToast({
+                              title: '报名取消',
+                              icon: 'none'
+                            });
+                            rej();
+                        }
+                    });
                 });
-                wx.redirectTo({
-                  url: 'activity?id=' + this.data.activity.id,
+            } else {
+                p = new Promise((res) => res());
+            }
+
+            p.then(() => {
+                wx.showLoading({
+                    title: '报名中...',
+                })
+                return qv.post(`${self.data.host}/api/activity/${self.data.activity.id}/registrations`, body).then(data => {
+                    wx.hideLoading({});
+                    wx.$activity.loadActivity();
+                    self.setData({
+                        selectedCharacter: null,
+                        'ui.selectedRole': false,
+                        'ui.submitDialog': false
+                    });
+                    wx.redirectTo({
+                      url: 'activity?id=' + this.data.activity.id,
+                    });
+                    wx.showToast({
+                      title: '报名成功',
+                    });
+                    lock = false;
+                }).catch(err => {
+                    lock = false;
                 });
-                wx.showToast({
-                  title: '报名成功',
-                });
-                lock = false;
-            }).catch(err => {
-                lock = false;
             });
         },
         onTakeLeaveClicked: function() {

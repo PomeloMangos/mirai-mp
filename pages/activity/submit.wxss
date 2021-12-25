@@ -35,3 +35,8 @@
 .dialog {
     z-index: 99999
 }
+
+.description-text {
+    line-height: 32px!important;
+    padding: 8px 12px!important;
+}
