@@ -16,9 +16,6 @@
         <tr>
             <td class="description-text">{{ activity.description }}</td>
         </tr>
-        <tr wx:if="{{ !myCharacters.length }}">
-            <td style=" line-height: 42px; padding-left: 15px;">您还没有添加任何角色</td>
-        </tr>
     </table>
 
     <div class="section-title">

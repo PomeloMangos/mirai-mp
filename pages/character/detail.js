@@ -58,7 +58,6 @@ Component({
             }] };
             var self = this;
             qv.post(`${this.data.host}/api/item/batch`, body).then(result => {
-                console.error(result);
                 let fetched = result.data.data.filter(x => x.group == 0);
                 if (!fetched.length) {
                     return;

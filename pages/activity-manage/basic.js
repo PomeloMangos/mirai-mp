@@ -117,7 +117,6 @@ Component({
     lifetimes: {
         attached: function () {
             let activity = this.properties.activity;
-            console.log(activity);
             let self = this;
             this.loadRaids().then(() => {
                 let selectedRaids = activity.raids.split(',').map(x => parseInt(x.trim()));

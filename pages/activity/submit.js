@@ -37,7 +37,6 @@ Component({
             });
         },
         saveCharacters: function(characters) {
-            console.warn(this.data.activity.realm);
             wx.setStorageSync('myCharacters-' + this.data.activity.realm, characters || []);
         },
         onClassClicked: function() {
@@ -108,7 +107,6 @@ Component({
             }
             ch._canTank = this.canTank(ch.class);
             ch._canHeal = this.canHeal(ch.class);
-            console.warn(ch);
         },
         canTank: function (cls) {
             return 35 & parseInt(cls);
@@ -262,7 +260,6 @@ Component({
         },
         onTakeLeaveClicked: function() {
             let ch = this.data.selectedCharacter;
-            console.log(ch);
             this.takeLeave(ch, ch._reg.status != 3);
         },
         takeLeave: function (ch, takeLeave) {

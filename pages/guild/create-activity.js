@@ -48,7 +48,6 @@ Page({
             let idx = this.data.selectedRaids.indexOf(raidId);
             this.data.selectedRaids.splice(idx, 1);
         }
-        console.log(this.data.selectedRaids);
         this.setData({
             selectedRaids: this.data.selectedRaids
         });

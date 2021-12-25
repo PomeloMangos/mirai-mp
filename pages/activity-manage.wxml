@@ -1,5 +1,7 @@
 <view>
     <activity-manage-basic wx:if="{{ active == 'basic' && activity && permission.guildManager }}" activity="{{ activity }}" permission="{{ permission }}"></activity-manage-basic>
+    <activity-manage-delete wx:if="{{ active == 'delete' && activity && permission.guildManager }}" activity="{{ activity }}" permission="{{ permission }}"></activity-manage-delete>
+    <activity-manage-wcl wx:if="{{ active == 'wcl' && activity && permission.guildManager }}" activity="{{ activity }}" permission="{{ permission }}"></activity-manage-wcl>
 </view>
 
 <view class="{{ isFullScreen ? 'footer footer-full' : 'footer' }}" wx:if="{{ loaded }}">
