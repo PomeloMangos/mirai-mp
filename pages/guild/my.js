@@ -1,3 +1,5 @@
+const qv = require("../../utils/qv");
+
 Component({
     properties: {
         guild: null
@@ -8,7 +10,8 @@ Component({
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
         defaultGuild: null,
-        guildPermission: {}
+        guildPermission: {},
+        nickname: null
     },
 
     methods: {
@@ -40,6 +43,17 @@ Component({
             wx.navigateTo({
               url: 'guild/create-activity?id=' + this.data.guild.id,
             })
+        },
+        patchDisplayName: function() {
+            let self = this;
+            qv.post(this.data.host + '/api/user/' + getApp().globalData.session.username + '/displayName', {
+                displayName: this.data.nickname
+            }).then(() => {
+                getApp().globalData.session.displayName = this.data.nickname;
+                wx.showToast({
+                    title: '修改成功',
+                })
+            });
         }
     },
 
@@ -48,7 +62,8 @@ Component({
             this.setData({ 
                 guild: this.properties.guild,
                 defaultGuild: wx.getStorageSync('defaultGuild'),
-                guildPermission: !wx.$guild ? {} : wx.$guild.data.permission
+                guildPermission: !wx.$guild ? {} : wx.$guild.data.permission,
+                nickname: getApp().globalData.session.displayName
             });
         }
     }

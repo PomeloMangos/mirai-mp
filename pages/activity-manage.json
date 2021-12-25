@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "activity-manage-basic": "activity-manage/basic"
+  }
+}

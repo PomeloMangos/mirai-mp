@@ -34,6 +34,11 @@ Page({
     onUnload: function() {
 
     },
+    onShow: function() {
+        if (this.data.id) {
+            wx.$guildId = this.data.id;
+        }
+    },
     switchTab: function(event) {
         let active = event.currentTarget.dataset.active;
         this.switchTab2(active);

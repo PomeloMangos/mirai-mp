@@ -29,6 +29,10 @@
                 <div class="btn-icon"><i class="fa fa-pencil"></i></div>
                 <div class="btn-text">报名</div>
             </view>
+            <view class="table-td" wx:if="{{ permission.guildManager }}" bindtap="switchToManageActivity">
+                <div class="btn-icon"><i class="fa fa-cog"></i></div>
+                <div class="btn-text">管理</div>
+            </view>
         </view>
     </view>
 </view>

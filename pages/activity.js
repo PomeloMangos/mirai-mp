@@ -19,7 +19,11 @@ Page({
         raids: [],
         bossNames: null,
         itemSets: null,
-        loaded: false
+        loaded: false,
+        permission: {
+            guildManager: false,
+            guildOwner: false
+        }
     },
     onLoad: function(options) {
         this.setData({
@@ -119,6 +123,10 @@ Page({
         let self = this;
         return qv.get(`${this.data.host}/api/activity/${this.data.id}`).then(result => {
             let activity = result.data.data;
+            wx.$guildId = activity.guildId;
+            
+            self.getGuildPermissions();
+
             wx.setNavigationBarTitle({
               title: activity.name,
             })
@@ -154,6 +162,8 @@ Page({
                 }
             }
 
+            wx.$guildId = activity.guildId;
+            
             // Done
             self.setData({ 
                 activity: activity,
@@ -177,5 +187,21 @@ Page({
         return {
             title: this.data.activity.name
         }
+    },
+    getGuildPermissions: function() {
+        let self = this;
+        qv.requestWithCredential(this.data.host + '/api/user/permission', 'GET').then(result => {
+            self.setData({ permission: result.data.data });
+        });
+    },
+    onShow: function() {
+        if (this.data.activity) {
+            wx.$guildId = this.data.activity.guildId;
+        }
+    },
+    switchToManageActivity: function() {
+        wx.navigateTo({
+          url: 'activity-manage?id=' + this.data.activity.id,
+        })
     }
 })
