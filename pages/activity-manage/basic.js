@@ -15,7 +15,8 @@ Component({
         deadline: '',
         duration: '',
         raids: [],
-        selectedRaids: []
+        selectedRaids: [],
+        guildId: null
     },
     methods: {
         onBackBtnClicked: function () {
@@ -126,14 +127,15 @@ Component({
                 }
 
                 self.setData({
-                    permission: this.properties.permission,
+                    permission: self.properties.permission,
                     begin: moment(activity.begin).format('YYYY-MM-DD HH:mm'),
                     deadline: moment(activity.deadline).format('YYYY-MM-DD HH:mm'),
                     name: activity.name,
                     description: activity.description,
                     duration: activity.estimatedDurationInHours,
                     selectedRaids: selectedRaids,
-                    raids: self.data.raids
+                    raids: self.data.raids,
+                    guildId: activity.guildId
                 });
             });
         }

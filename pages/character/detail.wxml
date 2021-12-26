@@ -95,7 +95,10 @@
         </table>
     </div>
 </view>
-<view wx:else class="wrapper {{ isFullScreen ? 'full' : '' }}" style="text-align: center; margin-top: 30px">
+<view wx:elif="{{ loading }}" class="wrapper {{ isFullScreen ? 'full' : '' }}" style="text-align: center; margin-top: 30px">
+    <view><i style="font-size: 48px; color: #3dd0d8" class="fa fa-spinner fa-spin"></i></view>
+    <view style="margin-top: 25px; color: #3dd0d8">加载中...</view>
+</view><view wx:else class="wrapper {{ isFullScreen ? 'full' : '' }}" style="text-align: center; margin-top: 30px">
     <view><i style="font-size: 48px; color: #3dd0d8" class="fa fa-search"></i></view>
     <view style="margin-top: 25px; color: #3dd0d8">没有找到指定的角色</view>
 </view>

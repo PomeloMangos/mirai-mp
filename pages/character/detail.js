@@ -11,18 +11,18 @@ Page({
         hps: [],
         items: [],
         name: null,
-        realm: null
+        realm: null,
+        loading: true
     },
     loadCharacter: function(name, realm) {
         let qv = require("../../utils/qv");
         let self = this;
         return qv.get(`${this.data.host}/api/charactor/${realm}/${name}`).then(result => {
             let character = result.data.data;
-            console.warn(result.data.data);
             if (character == null) {
-                self.setData({ notFound: true });
+                self.setData({ notFound: true, loading: false });
             } else {
-                self.setData({ notFound: false });
+                self.setData({ notFound: false, loading: false });
                 var dps = JSON.parse(character.dpsBossRanks);
                 var hps = JSON.parse(character.hpsBossRanks);
                 for (let i = 0; i < dps.length; ++i) {

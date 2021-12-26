@@ -47,7 +47,7 @@ Component({
                 for (let partyIndex = 0; partyIndex < data.length; ++partyIndex) {
                     let party = [];
                     for (let memberIndex = 0; memberIndex < 5; ++memberIndex) {
-                        let member = data[partyIndex][memberIndex];
+                        let member = data[memberIndex][partyIndex];
                         if (member) {
                             let reg = activity.registrations.filter(x => x.name == member.name);
                             if (reg.length) {
