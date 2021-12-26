@@ -14,4 +14,10 @@
 
 .wechat-nickname {
     color: #ccc;
+    width: 100px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: bottom;
 }

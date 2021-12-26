@@ -108,6 +108,9 @@ Component({
                 selectedReg: null,
                 action: null
             });
+            if (wx.$activity) {
+                wx.$activity.setData({ activity: this.data.activity });
+            }
         },
         deleteReg: function (id) {
             qv.delete(this.data.host + '/api/activity/' + this.data.activity.id + '/registrations/' + id);
@@ -121,6 +124,9 @@ Component({
                 selectedReg: null,
                 action: null
             });
+            if (wx.$activity) {
+                wx.$activity.setData({ activity: this.data.activity });
+            }
         },
         init: function (activity) {
             let bossAmount = wx.$activity.data.bosses.length;
