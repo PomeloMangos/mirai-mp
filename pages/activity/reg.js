@@ -1,3 +1,5 @@
+const qv = require("../../utils/qv");
+
 Component({
     properties: {
         activity: null
@@ -32,7 +34,10 @@ Component({
         ],
         statistics: null,
         grouped: null,
-        itemSets: null
+        itemSets: null,
+        permission: {},
+        selectedReg: null,
+        action: null
     },
 
     methods: {
@@ -43,14 +48,86 @@ Component({
                 })
             });
         },
-    },
+        onPlayerClicked: function(event) {
+            console.log(this.data.permission);
 
-    lifetimes: {
-        attached: function () {
-            let activity = this.properties.activity;
+            if (!this.data.permission.guildManager) {
+                return;
+            }
+
+            let reg = event.currentTarget.dataset.reg;
+            this.setData({
+                selectedReg: reg,
+                action: null
+            });
+        },
+        onDialogCloseBtnClicked: function() {
+            this.setData({
+                selectedReg: null,
+                action: null
+            });
+        },
+        getGuildPermissions: function() {
+            let self = this;
+            qv.requestWithCredential(this.data.host + '/api/user/permission', 'GET').then(result => {
+                self.setData({ permission: result.data.data });
+            });
+        },
+        onActionOptClicked: function(event) {
+            let action = event.currentTarget.dataset.action;
+            this.setData({
+                action: action
+            });
+        },
+        onDialogOkBtnClicked: function() {
+            if (this.data.action == 'accept') {
+                this.setStatus(this.data.selectedReg.id, 4, this.data.selectedReg.role);
+            } else if (this.data.action == 'reject') {
+                this.setStatus(this.data.selectedReg.id, 1, this.data.selectedReg.role);
+            } else if (this.data.action == 'standby') {
+                this.setStatus(this.data.selectedReg.id, 2, this.data.selectedReg.role);
+            } else if (this.data.action == 'dps') {
+                this.setStatus(this.data.selectedReg.id, this.data.selectedReg.status, 1);
+            } else if (this.data.action == 'hps') {
+                this.setStatus(this.data.selectedReg.id, this.data.selectedReg.status, 2);
+            } else if (this.data.action == 'tank') {
+                this.setStatus(this.data.selectedReg.id, this.data.selectedReg.status, 0);
+            } else if (this.data.action == 'consumer') {
+                this.setStatus(this.data.selectedReg.id, this.data.selectedReg.status, 3);
+            } else if (this.data.action == 'delete') {
+                this.deleteReg(this.data.selectedReg.id);
+            }
+        },
+        setStatus: function (id, status, role) {
+            qv.put(this.data.host + '/api/activity/' + this.data.activity.id + '/registrations/' + id, { status: status, role: role });
+            let reg = this.data.activity.registrations.filter(x => x.id == this.data.selectedReg.id)[0];
+            reg.role = role;
+            reg.status = status;
+            this.init(this.data.activity);
+            this.setData({
+                selectedReg: null,
+                action: null
+            });
+        },
+        deleteReg: function (id) {
+            qv.delete(this.data.host + '/api/activity/' + this.data.activity.id + '/registrations/' + id);
+            let reg = this.data.activity.registrations.filter(x => x.id == this.data.selectedReg.id)[0];
+            let idx = this.data.activity.registrations.indexOf(reg);
+            if (idx >= 0) {
+                this.data.activity.registrations.splice(idx, 1);
+                this.init(this.data.activity);
+            }
+            this.setData({
+                selectedReg: null,
+                action: null
+            });
+        },
+        init: function (activity) {
             let bossAmount = wx.$activity.data.bosses.length;
             let statistics = [];
             let grouped = [];
+
+            this.getGuildPermissions();
 
             // 处理分组
             for (let i = 0; i < this.data.groups.length; ++i) {
@@ -164,8 +241,15 @@ Component({
                 canBack: !!wx.$guild,
                 statistics: statistics,
                 grouped: grouped,
-                bossAmount: bossAmount
+                bossAmount: bossAmount,
+                permission: wx.$activity.data.permission
             });
+        }
+    },
+
+    lifetimes: {
+        attached: function () {
+            this.init(this.properties.activity);
         }
     }
 })

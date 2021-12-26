@@ -3,10 +3,30 @@ const host = 'https://gbgbg.cn';
 
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // 强制更新
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      updateManager.onUpdateReady(function () {
+        wx.showModal({
+          title: '更新检测',
+          content: '检测到新版本，是否重启小程序？',
+          success: function (res) {
+            if (res.confirm) {
+              updateManager.applyUpdate()
+            }
+          }
+        });
+      });
+      updateManager.onUpdateFailed(function () {
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本下载失败',
+          showCancel: false
+        });
+      })
+    })
+
+    // 设置全面屏UI
     let self = this;
     wx.getSystemInfo({
       success: (result) => {
@@ -15,6 +35,8 @@ App({
         }
       },
     });
+
+    // 登录
     wx.login({
       success: function(res) {
         self.loginToMirai(res.code, '');

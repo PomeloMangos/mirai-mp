@@ -1,13 +1,7 @@
-// pages/index.js
-
 const app = getApp();
 const qv = require("../utils/qv");
 
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
         id: null,
         isFullScreen: app.globalData.isFullScreen,

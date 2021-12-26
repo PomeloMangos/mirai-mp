@@ -15,7 +15,7 @@
         </div>
 
         <table class="form-table reg-table">
-            <tr wx:for="{{ grouped[idx] }}" wx:for-item="reg">
+            <tr wx:for="{{ grouped[idx] }}" wx:for-item="reg" data-reg="{{ reg }}" bindtap="onPlayerClicked">
                 <td>
                     <a>
                         <div>
@@ -63,4 +63,32 @@
             </tr>
         </table>
     </view>
+</view>
+
+<view class="dialog" style="margin-top:-240px" wx:if="{{ selectedReg }}">
+    <div class="dialog-header">
+        <span class="class-{{ selectedReg.class }}">
+            <image class="class-img" src="{{ '/assets/images/class-' + selectedReg.class + '.png' }}" />
+            {{ selectedReg.name }}
+        </span>
+        <a class="right" bindtap="onDialogCloseBtnClicked"><i class="fa fa-close"></i></a>
+    </div>
+    <div class="dialog-body" style="padding: 0 15px">
+        <div class="dialog-select-row" data-action="accept" bindtap="onActionOptClicked"><div class="ratio {{ action == 'accept' ? 'selected' : '' }}"><div></div></div> 通过申请</div>
+        <div class="dialog-select-row" data-action="standby" bindtap="onActionOptClicked"><div class="ratio {{ action == 'standby' ? 'selected' : '' }}"><div></div></div> 设为替补</div>
+        <div class="dialog-select-row" data-action="reject" bindtap="onActionOptClicked"><div class="ratio {{ action == 'reject' ? 'selected' : '' }}"><div></div></div> 拒绝申请</div>
+        <div class="dialog-select-row" data-action="tank" bindtap="onActionOptClicked"><div class="ratio {{ action == 'tank' ? 'selected' : '' }}"><div></div></div> 设为坦克</div>
+        <div class="dialog-select-row" data-action="dps" bindtap="onActionOptClicked"><div class="ratio {{ action == 'dps' ? 'selected' : '' }}"><div></div></div> 设为输出</div>
+        <div class="dialog-select-row" data-action="hps" bindtap="onActionOptClicked"><div class="ratio {{ action == 'hps' ? 'selected' : '' }}"><div></div></div> 设为治疗</div>
+        <div class="dialog-select-row" data-action="consumer" bindtap="onActionOptClicked"><div class="ratio {{ action == 'consumer' ? 'selected' : '' }}"><div></div></div> 设为消费</div>
+        <div class="dialog-select-row" data-action="delete" bindtap="onActionOptClicked"><div class="ratio {{ action == 'delete' ? 'selected' : '' }}"><div></div></div> 删除申请</div>
+    </div>
+    <div class="dialog-footer">
+        <table>
+            <tr>
+                <td><a bindtap="onDialogOkBtnClicked">确定</a></td>
+                <td><a bindtap="onDialogCloseBtnClicked">取消</a></td>
+            </tr>
+        </table>
+    </div>
 </view>

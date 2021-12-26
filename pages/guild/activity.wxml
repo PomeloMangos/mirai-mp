@@ -21,6 +21,7 @@
             <td>
                 <image class="raid-icon" wx:if="{{ act.raids == '1,2' }}" src="{{ host }}/assets/images/raid/1_2.png" />
                 <image class="raid-icon" wx:elif="{{ act.raids == '3,4' }}" src="{{ host }}/assets/images/raid/3_4.png" />
+                <image class="raid-icon" wx:elif="{{ act.raids == '5,6' }}" src="{{ host }}/assets/images/raid/5_6.png" />
                 <image class="raid-icon" wx:else src="{{ (host + '/assets/images/raid/' + act._firstRaid + '.jpg') }}" />
             </td>
             <td>
