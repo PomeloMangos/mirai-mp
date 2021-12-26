@@ -1,6 +1,9 @@
 const app = getApp();
 
 Component({
+    properties: {
+        realm: null
+    },
     data: {
         isFullScreen: app.globalData.isFullScreen,
         realm: '',
@@ -26,7 +29,16 @@ Component({
                 return;
             }
 
-            wx.$root.switchToCharacterDetail(this.data.characterName, this.data.realm);
+            wx.navigateTo({
+              url: 'character/detail?name=' + this.data.characterName + '&realm=' + this.data.realm,
+            })
+        }
+    },
+    lifetimes: {
+        attached: function() {
+            this.setData({
+                realm: this.properties.realm || ''
+            });
         }
     }
 })

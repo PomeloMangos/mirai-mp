@@ -72,6 +72,7 @@
             {{ selectedReg.name }}
         </span>
         <a class="right" bindtap="onDialogCloseBtnClicked"><i class="fa fa-close"></i></a>
+        <a class="right" bindtap="onQueryWclBtnClicked" data-realm="{{ activity.realm }}" data-name="{{ selectedReg.name }}" style="margin-right: 20px;"><i class="fa fa-globe"></i> 查询WCL</a>
     </div>
     <div class="dialog-body" style="padding: 0 15px">
         <div class="dialog-select-row" data-action="accept" bindtap="onActionOptClicked"><div class="ratio {{ action == 'accept' ? 'selected' : '' }}"><div></div></div> 通过申请</div>

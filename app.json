@@ -6,7 +6,8 @@
         "pages/ledger",
         "pages/my",
         "pages/guild/create-activity",
-        "pages/activity-manage"
+        "pages/activity-manage",
+        "pages/character/detail"
     ],
     "window": {
         "backgroundTextStyle": "dark",

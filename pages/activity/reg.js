@@ -49,13 +49,13 @@ Component({
             });
         },
         onPlayerClicked: function(event) {
-            console.log(this.data.permission);
+            let reg = event.currentTarget.dataset.reg;
 
             if (!this.data.permission.guildManager) {
+                this.openWclPage(reg.name, this.data.activity.realm);
                 return;
             }
 
-            let reg = event.currentTarget.dataset.reg;
             this.setData({
                 selectedReg: reg,
                 action: null
@@ -244,6 +244,16 @@ Component({
                 bossAmount: bossAmount,
                 permission: wx.$activity.data.permission
             });
+        },
+        openWclPage: function(name, realm) {
+            wx.navigateTo({
+              url: 'character/detail?name=' + name + '&realm=' + realm
+            });
+        },
+        onQueryWclBtnClicked: function(event) {
+            let realm = event.currentTarget.dataset.realm;
+            let name = event.currentTarget.dataset.name;
+            this.openWclPage(name, realm);
         }
     },
 

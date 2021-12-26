@@ -153,6 +153,9 @@ Component({
             });
         },
         onSubmitClicked: function() {
+            if (this.data.activity.status != 1) {
+                return;
+            }
             let expire = wx.getStorageSync('userInfoExpire');
             if (!expire || new Date().getTime() > expire) {
                 wx.removeStorageSync('userInfo');

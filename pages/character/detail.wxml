@@ -1,16 +1,19 @@
 <view class="{{ isFullScreen ? 'header header-full' : 'header' }}">
 </view>
-<view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}" wx:if="{{ character }}">
+<view wx:if="{{ !notFound }}" class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
         <image src="{{ '/assets/images/class-' + character.class + '.png' }}" />
         <span class="page-title" class="class-{{ character.class }}">
             {{ character.name }} <small>(iLvl {{ character.highestItemLevel }})</small>
         </span>
 </view>
+<view wx:if="{{ notFound }}" class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
+    <span class="page-title">查询角色</span>
+</view>
 <view class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
     <a bindtap="onBackBtnClicked"><i class="fa fa-angle-left"></i> 返回</a>
 </view>
 
-<view class="wrapper {{ isFullScreen ? 'full' : '' }}">
+<view class="wrapper {{ isFullScreen ? 'full' : '' }}" wx:if="{{ !notFound }}">
     <div class="tab-outer" style="margin-bottom: 15px">
         <a class="tab-item" data-active="dps" bindtap="onTabBtnClicked" class="tab-item {{ active == 'dps' ? 'active' : '' }}"><i class="fa fa-flag-checkered"></i> 输出经验</a>
         <a class="tab-item" data-active="hps" bindtap="onTabBtnClicked" class="tab-item {{ active == 'hps' ? 'active' : '' }}"><i class="fa fa-flag-checkered"></i> 治疗经验</a>
@@ -91,4 +94,8 @@
             </tbody>
         </table>
     </div>
+</view>
+<view wx:else class="wrapper {{ isFullScreen ? 'full' : '' }}" style="text-align: center; margin-top: 30px">
+    <view><i style="font-size: 48px; color: #3dd0d8" class="fa fa-search"></i></view>
+    <view style="margin-top: 25px; color: #3dd0d8">没有找到指定的角色</view>
 </view>

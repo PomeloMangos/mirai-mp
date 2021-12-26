@@ -96,8 +96,8 @@ Page({
             server: 0,
             realm: null,
             description: this.data.description,
-            deadline: new Date(this.data.deadline).toISOString(),
-            begin: new Date(this.data.begin).toISOString(),
+            deadline: moment(this.data.deadline + ":00").utc().format('YYYY-MM-DDTHH:mmZ'),
+            begin: moment(this.data.begin + ":00").utc().format('YYYY-MM-DDTHH:mmZ'),
             estimatedDurationInHours: this.data.duration,
             raids: this.data.selectedRaids.toString()
         }).then(result => {
