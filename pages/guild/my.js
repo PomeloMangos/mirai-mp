@@ -11,7 +11,8 @@ Component({
         isFullScreen: getApp().globalData.isFullScreen,
         defaultGuild: null,
         guildPermission: {},
-        nickname: null
+        nickname: null,
+        userId: null
     },
 
     methods: {
@@ -63,7 +64,8 @@ Component({
                 guild: this.properties.guild,
                 defaultGuild: wx.getStorageSync('defaultGuild'),
                 guildPermission: !wx.$guild ? {} : wx.$guild.data.permission,
-                nickname: getApp().globalData.session.displayName
+                nickname: getApp().globalData.session.displayName,
+                userId: getApp().globalData.session.username
             });
         }
     }
