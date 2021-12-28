@@ -6,6 +6,7 @@
         "pages/ledger",
         "pages/my",
         "pages/guild/create-activity",
+        "pages/guild/manager",
         "pages/activity-manage",
         "pages/character/detail"
     ],

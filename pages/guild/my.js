@@ -55,6 +55,11 @@ Component({
                     title: '修改成功',
                 })
             });
+        },
+        onManagerManagementClicked: function() {
+            wx.navigateTo({
+              url: 'guild/manager?id=' + this.data.guild.id,
+            });
         }
     },
 

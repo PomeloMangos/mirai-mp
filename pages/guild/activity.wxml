@@ -29,9 +29,9 @@
                     {{ act.name }}
                 </div>
                 <div class="subline" style="zoom: 1.2">
-                    <i class="fa fa-calendar"></i> {{ act._begin }}
-                    <i class="fa fa-star"></i> {{ act.raidLeader }}
-                    <i class="fa fa-user"></i> {{ act.registeredCount }}
+                    <i style="color:#fff" class="fa fa-calendar"></i> {{ act._begin }}
+                    <i style="color:#fff; margin-left: 5px" class="fa fa-star"></i> {{ act.raidLeader }}
+                    <i style="color:#fff; margin-left: 5px" class="fa fa-user"></i> {{ act.registeredCount }}
                 </div>
             </td>
         </tr>

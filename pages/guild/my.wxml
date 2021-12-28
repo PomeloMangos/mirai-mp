@@ -42,6 +42,17 @@
         </view>
     </view>
 
+    <view style="margin-top: 45px" wx:if="{{ guildPermission.guildOwner }}">
+        <div class="section-title">公会管理员设置</div>
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr>
+                <td class="row-btn" bindtap="onManagerManagementClicked">管理员设置</td>
+            </tr>
+        </table>
+
+        <div class="section-title">您是{{guild.name}}公会的所有者，您可以点击上面的按钮添加公会管理员，让其协助你管理公会。</div>
+    </view>
+
     <view style="margin-top: 45px" wx:if="{{ guildPermission.guildManager }}">
         <div class="section-title">创建公会活动</div>
         <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
