@@ -65,6 +65,18 @@
     </view>
 
     <view style="margin-top: 45px" wx:if="{{ guildPermission.guildManager }}">
+        <div class="section-title">报名策略</div>
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr bindtap="onRegisterPolicyClicked">
+                <td wx:if="{{ guild.registerPolicy == 0 }}">允许使用所有平台报名 <i class="fa fa-angle-right right"></i></td>
+                <td wx:if="{{ guild.registerPolicy == 1 }}">强制使用小程序报名 <i class="fa fa-angle-right right"></i></td>
+            </tr>
+        </table>
+
+        <div class="section-title">您是{{guild.name}}公会的管理员，您可以点击上面的按钮切换报名策略。</div>
+    </view>
+
+    <view style="margin-top: 45px" wx:if="{{ guildPermission.guildManager }}">
         <div class="section-title" style="margin-top: 45px">我的昵称</div>
         <view>
             <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">

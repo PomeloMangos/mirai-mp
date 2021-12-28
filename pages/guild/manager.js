@@ -88,5 +88,12 @@ Page({
             });
             self.onLoad({ id: self.data.guildId });
         });
+    },
+    onBackBtnClicked: function () {
+        wx.navigateBack().catch(() => {
+            wx.redirectTo({
+              url: 'guild?id=' + this.data.guildId
+            });
+        });
     }
 })

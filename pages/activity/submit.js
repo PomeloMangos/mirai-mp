@@ -3,7 +3,8 @@ let lock = false;
 
 Component({
     properties: {
-        activity: null
+        activity: null,
+        guild: null
     },
 
     data: {
@@ -174,7 +175,15 @@ Component({
                     self.doSubmit(res.userInfo.nickName, res.userInfo.avatarUrl);
                   },
                   fail: function() {
-                    self.doSubmit(null, null);
+                      if (self.data.guild.registerPolicy == 1) {
+                        wx.showModal({
+                            showCancel: false,
+                            title: '错误',
+                            content: '本公会要求授权读取微信头像与昵称才能报名'
+                        });
+                      } else {
+                        self.doSubmit(null, null);
+                      }
                   }
                 })
             }
@@ -287,12 +296,26 @@ Component({
                 })
             });
         },
+        loadGuild: function(guildId) {
+            let self = this;
+            wx.showLoading({
+              title: '正在加载信息...',
+            });
+            return qv.get(`${this.data.host}/api/guild/${guildId}`).then(result => {
+                let guild = result.data.data;
+                wx.setNavigationBarTitle({
+                    title: guild.name,
+                })
+                self.setData({ guild: guild });
+                wx.hideLoading({});
+            });
+        }
     },
 
     lifetimes: {
         attached: function () {
             let activity = this.properties.activity;
-
+            this.loadGuild(activity.guildId);
             let myCharacters = wx.getStorageSync('myCharacters-' + activity.realm) || [];
             for (let i = 0; i < myCharacters.length; ++i) {
                 this.handleCharacter(activity, myCharacters[i]);

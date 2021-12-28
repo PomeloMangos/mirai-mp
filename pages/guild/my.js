@@ -60,6 +60,11 @@ Component({
             wx.navigateTo({
               url: 'guild/manager?id=' + this.data.guild.id,
             });
+        },
+        onRegisterPolicyClicked: function() {
+            wx.navigateTo({
+              url: 'guild/reg-policy?id=' + this.data.guild.id,
+            });
         }
     },
 
