@@ -69,8 +69,23 @@ Page({
             }
         }
 
-        activity.ledger.statistics.topConsumers = this.generateTopConsumers(activity.ledger, activity);
-        activity.ledger.statistics.summary = this.generateLedgerSumamry(activity.ledger);
+        if (activity.ledger.statistics && activity.ledger.statistics.categories) {
+            for (let i = 0; i < activity.ledger.statistics.categories.length; ++i) {
+                let category = activity.ledger.statistics.categories[i];
+                for (let j = 0; j < category.details.length; ++j) {
+                    let reg = activity.registrations.filter(x => x.name == category.details[j].player);
+                    if (reg.length) {
+                        reg = reg[0];
+                        category.details[j]._player = reg;
+                    }
+                }
+            }
+        }
+
+        if (!activity.ledger.statistics.topConsumers)
+            activity.ledger.statistics.topConsumers = this.generateTopConsumers(activity.ledger, activity);
+        if (!activity.ledger.statistics.summary || !activity.ledger.statistics.summary.per)
+            activity.ledger.statistics.summary = this.generateLedgerSumamry(activity.ledger);
     },
     generateTopConsumers: function (ledger, activity) {
         if (!ledger.income) {

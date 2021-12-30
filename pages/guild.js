@@ -65,6 +65,19 @@ Page({
             self.setData({ permission: result.data.data });
         });
     },
+    scanQrCode: function() {
+        let self = this;
+        wx.scanCode({
+            success: function(res) {
+                if (res.result) {
+                    qv.requestWithCredential(self.data.host + '/api/scan/scan', 'POST', { code: res.result });
+                    wx.showToast({
+                      title: '登录成功',
+                    });
+                }
+            }
+        })
+    },
     onShareAppMessage: function () {
         return {
             title: '【公会活动】' + this.data.guild.name

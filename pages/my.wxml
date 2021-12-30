@@ -11,10 +11,6 @@
                 <div class="btn-icon"><i class="fa fa-pencil"></i></div>
                 <div class="btn-text">个人资料</div>
             </view>
-            <view wx:if="{{ false }}" class="table-td" bindtap="scanQrCode">
-                <div class="btn-icon"><i class="fa fa-qrcode"></i></div>
-                <div class="btn-text">扫码登录</div>
-            </view>
             <view class="table-td" style="color: {{ active == 'createGuild' ? '#3dd0d8' : '#c2d4f8' }}" data-active="createGuild" bindtap="switchTab">
                 <div class="btn-icon"><i class="fa fa-plus"></i></div>
                 <div class="btn-text">创建公会</div>

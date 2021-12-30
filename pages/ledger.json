@@ -2,6 +2,7 @@
   "usingComponents": {
     "ledger-summary": "ledger/summary",
     "ledger-detail": "ledger/detail",
-    "ledger-top": "ledger/top"
+    "ledger-top": "ledger/top",
+    "ledger-boss": "ledger/boss"
   }
 }

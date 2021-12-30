@@ -1,9 +1,11 @@
 // pages/index.js
 
+const qv = require("../utils/qv");
 const app = getApp();
 
 Page({
     data: {
+        host: app.globalData.host,
         isFullScreen: app.globalData.isFullScreen,
         active: 'home',
         layoutVariables: {
@@ -44,6 +46,19 @@ Page({
     navigateToMy: function() {
         wx.navigateTo({
           url: 'my',
+        })
+    },
+    scanQrCode: function() {
+        let self = this;
+        wx.scanCode({
+            success: function(res) {
+                if (res.result) {
+                    qv.requestWithCredential(self.data.host + '/api/scan/scan', 'POST', { code: res.result });
+                    wx.showToast({
+                      title: '登录成功',
+                    });
+                }
+            }
         })
     },
     onShareAppMessage: function () {
