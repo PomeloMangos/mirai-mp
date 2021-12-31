@@ -90,6 +90,13 @@
             <span>报名截止日期已过，您已无法报名</span>
         </div>
     </view>
+
+    <div class="section-title" style="margin-top: 40px">价目表</div>
+    <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+        <tr bindtap="onShowPricingBtnClicked">
+            <td>查看装备价目表 <i class="fa fa-angle-right right"></i></td>
+        </tr>
+    </table>
 </view>
 
 <!-- 职业选择框 -->

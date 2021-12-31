@@ -8,8 +8,11 @@
         "pages/guild/create-activity",
         "pages/guild/manager",
         "pages/guild/reg-policy",
+        "pages/guild/pricing",
+        "pages/guild/pricing-detail",
         "pages/activity-manage",
-        "pages/character/detail"
+        "pages/character/detail",
+        "pages/help"
     ],
     "window": {
         "backgroundTextStyle": "dark",

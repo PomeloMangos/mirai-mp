@@ -21,7 +21,7 @@
                 <td wx:else>
                     {{ x.player }}
                 </td>
-                <td style="text-align: right;">{{ x.price }}G</td>
+                <td class="{{ x._priceCss }}" style="text-align: right;">{{ x.price }}G</td>
             </tr>
         </tbody>
     </table>

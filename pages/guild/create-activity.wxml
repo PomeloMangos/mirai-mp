@@ -19,9 +19,9 @@
                 </td>
             </tr>
             <tr>
-                <td>活动简介</td>
+                <td>活动须知</td>
                 <td>
-                    <input class="txtbox" placeholder="点击输入活动简介" model:value="{{ description }}" />
+                    <input class="txtbox" placeholder="点击输入活动须知" model:value="{{ description }}" />
                 </td>
             </tr>
             <tr>

@@ -8,13 +8,34 @@
 </view>
 
 <view class="wrapper {{ isFullScreen ? 'full' : '' }}">
-    <div class="section-title">WCL同步</div>
     <view>
         <table class="form-table" style="margin-bottom: 15px;">
-            <tr class="row-btn" bindtap="updateWcl">
-                <td>强制同步WCL</td>
+            <tr>
+                <textarea placeholder="点击粘贴账本字符串..." maxlength="-1" model:value="{{ ledgerString }}"></textarea>
+            </tr>
+            <tr class="row-btn" bindtap="importLedger">
+                <td>上传账本</td>
             </tr>
         </table>
-        <div class="section-title">报名帖中的装等、经验数据等信息均来自WCL榜，玩家在报名时会访问WCL拉取这些数据，但如果报名帖发起时间与实际活动开始时间间隔过长会导致数据不同步，因此您可以在这里强制拉取所有报名人员的实时WCL数据。</div>
+        <div class="section-title">您需要使用[Mirai金团助手]单体插件记录和导出账单字符串，粘贴至上面的编辑框中，如果您尚未安装单体插件，可以复制下面的链接，使用电脑下载。</div>
+        <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <input class="txt-link" value="https://mwow.org/api/blob/MiraiLedger.zip" />
+                </td>
+            </tr>
+        </table>
+        <view>
+            <div class="section-title">第一步：使用Mirai金团助手记账</div>
+            <image style="width: 100%" src="{{ host + '/assets/images/mirai-ledger.png' }}"></image>
+        </view>
+        <view>
+            <div class="section-title">第二步：点击“导出战报”右侧的箭头，选择“导出至Mirai”</div>
+            <image style="width: 100%" src="{{ host + '/assets/images/mirai-ledger-2.png' }}"></image>
+        </view>
+        <view>
+            <div class="section-title">第三步：将账本字符串复制，粘贴至上方编辑区，点击“上传账本”</div>
+            <image style="width: 100%" src="{{ host + '/assets/images/mirai-ledger-3.png' }}"></image>
+        </view>
     </view>
 </view>

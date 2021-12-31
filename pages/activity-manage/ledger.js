@@ -7,9 +7,10 @@ Component({
         permission: null
     },
     data: {
+        activity: null,
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
-        confirm: ''
+        ledgerString: ''
     },
     methods: {
         onBackBtnClicked: function () {
@@ -19,20 +20,39 @@ Component({
                 });
             });
         },
-        updateWcl: function() {
-            wx.showToast({
-              title: '已提交同步',
-            })
-            qv.post(this.data.host + '/api/charactor/batch', {
-                realm: this.data.activity.realm,
-                names: this.data.activity.registrations.map(x => x.name)
+        importLedger: function() {
+            if (!this.data.ledgerString) {
+                wx.showModal({
+                    showCancel: false,
+                    title: '错误',
+                    content: '请粘贴账本字符串'
+                })
+                return;
+            }
+
+            wx.showLoading({
+              title: '正在导入',
+            });
+            let self = this;
+            qv.post(this.data.host + '/api/util/ledger', { string: this.data.ledgerString }).then(parseResult => {
+                console.log(JSON.stringify(parseResult.data));
+                return qv.put(self.data.host + '/api/activity/' + this.data.activity.id, { extension3: JSON.stringify(parseResult.data) });
+            }).then(result => {
+                wx.hideLoading({});
+                wx.showToast({
+                  title: '上传完毕',
+                });
+                if (wx.$activity) {
+                    wx.$activity.onLoad({ id: self.data.activity.id });
+                }
+                self.onBackBtnClicked();
             });
         }
     },
     lifetimes: {
         attached: function () {
             let activity = this.properties.activity;
-            this.setData({});
+            this.setData({ activity: activity });
         }
     }
 })

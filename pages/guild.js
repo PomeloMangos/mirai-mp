@@ -78,6 +78,11 @@ Page({
             }
         })
     },
+    showPricing: function() {
+        wx.navigateTo({
+          url: 'guild/pricing?id=' + this.data.id,
+        })
+    },
     onShareAppMessage: function () {
         return {
             title: '【公会活动】' + this.data.guild.name

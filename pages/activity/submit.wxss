@@ -40,3 +40,9 @@
     line-height: 32px!important;
     padding: 8px 12px!important;
 }
+
+.right {
+    font-size: 22px;
+    line-height: 48px;
+    color: #3dd0d8;
+}

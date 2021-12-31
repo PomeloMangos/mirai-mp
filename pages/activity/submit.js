@@ -309,6 +309,11 @@ Component({
                 self.setData({ guild: guild });
                 wx.hideLoading({});
             });
+        },
+        onShowPricingBtnClicked: function() {
+            wx.navigateTo({
+                url: 'guild/pricing?id=' + this.data.activity.guildId,
+            })
         }
     },
 

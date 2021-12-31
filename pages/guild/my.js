@@ -70,6 +70,11 @@ Component({
             wx.redirectTo({
               url: 'index?redirect=no',
             })
+        },
+        onAskForHelpBtnClicked: function() {
+            wx.navigateTo({
+              url: 'help',
+            });
         }
     },
 
@@ -80,7 +85,8 @@ Component({
                 defaultGuild: wx.getStorageSync('defaultGuild'),
                 guildPermission: !wx.$guild ? {} : wx.$guild.data.permission,
                 nickname: getApp().globalData.session.displayName,
-                userId: getApp().globalData.session.username
+                userId: getApp().globalData.session.username,
+                website: 'https://' + this.properties.guild.id + '.mwow.org'
             });
         }
     }

@@ -82,8 +82,7 @@ Page({
             }
         }
 
-        if (!activity.ledger.statistics.topConsumers)
-            activity.ledger.statistics.topConsumers = this.generateTopConsumers(activity.ledger, activity);
+        activity.ledger.statistics.topConsumers = this.generateTopConsumers(activity.ledger, activity);
         if (!activity.ledger.statistics.summary || !activity.ledger.statistics.summary.per)
             activity.ledger.statistics.summary = this.generateLedgerSumamry(activity.ledger);
     },
@@ -114,7 +113,7 @@ Page({
             if (reg.length) {
                 _player = reg[0];
             }
-            ret.push({ player: keys[i], price: tmp[keys[i]], _player: _player });
+            ret.push({ player: keys[i], price: tmp[keys[i]], _player: _player, _priceCss: this.getPriceCss(tmp[keys[i]]) });
         }
 
         ret.sort((a, b) => b.price - a.price);
@@ -153,6 +152,19 @@ Page({
         }
 
         return ret;
+    },
+    getPriceCss: function(price) {
+        if (price >= 10000) {
+            return 'orange';
+        } else if (price >= 5000) {
+            return 'purple';
+        } else if (price >= 1000) {
+            return 'blue';
+        } else if (price > 0) {
+            return 'white';
+        } else {
+            return 'gray';
+        }
     },
     loadActivity: function() {
         if (wx.$activity && wx.$activity.data.activity.id == this.data.id) {

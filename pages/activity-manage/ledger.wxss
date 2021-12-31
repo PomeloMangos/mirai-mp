@@ -30,3 +30,15 @@
 date-time-picker {
     color: #fff;
 }
+
+textarea {
+    padding: 10px
+}
+
+.txt-link {
+    line-height: 48px;
+    height: 48px;
+    color: #fff;
+    font-size: 16px;
+    display: block;
+}
