@@ -59,7 +59,7 @@ table {
   position: fixed;
   height: 32px;
   left: 0;
-  top: 6px;
+  top: 12px;
   right: 0;
   line-height: 60px;
   z-index: 15;

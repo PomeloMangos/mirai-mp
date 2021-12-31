@@ -65,6 +65,11 @@ Component({
             wx.navigateTo({
               url: 'guild/reg-policy?id=' + this.data.guild.id,
             });
+        },
+        onBackBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            })
         }
     },
 

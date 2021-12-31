@@ -13,6 +13,9 @@
             <tr>
                 <td class="row-btn" bindtap="onSetBtnClicked">设置常驻公会</td>
             </tr>
+            <tr>
+                <td class="row-btn" bindtap="onBackBtnClicked">返回公会列表</td>
+            </tr>
         </table>
 
         <div class="section-title">设置常驻公会后，进入小程序时将自动进入公会，您无需再从公会列表中找到该公会进入。</div>
@@ -21,6 +24,9 @@
         <table class="form-table" style="margin-top: 15px; margin-bottom: 15px;">
             <tr>
                 <td class="row-btn" style="color: rgb(255,128,128)" bindtap="onUnsetBtnClicked">取消常驻公会</td>
+            </tr>
+            <tr>
+                <td class="row-btn" bindtap="onBackBtnClicked">返回公会列表</td>
             </tr>
         </table>
 

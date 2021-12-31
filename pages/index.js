@@ -1,5 +1,3 @@
-// pages/index.js
-
 const qv = require("../utils/qv");
 const app = getApp();
 
@@ -15,10 +13,10 @@ Page({
             }
         }
     },
-    onLoad: function() {
+    onLoad: function(options) {
         wx.$root = this;
         let defaultGuild = wx.getStorageSync('defaultGuild');
-        if (defaultGuild) {
+        if (defaultGuild && (!options.redirect || options.redirect != 'no')) {
             this.navigateToGuild(defaultGuild);
         }
     },
