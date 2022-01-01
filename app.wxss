@@ -243,8 +243,17 @@ table {
   opacity: 0.6;
 }
 
+.reg-title {
+  margin-bottom: -14px;
+}
+
 .reg-subline {
   zoom: 0.9;
+  display: inline-block;
+}
+
+.reg-subline.short-width {
+  zoom: 0.8;
 }
 
 .first-line {

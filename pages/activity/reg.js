@@ -9,6 +9,7 @@ Component({
         activity: null,
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
+        shortWidth: getApp().globalData.shortWidth,
         canBack: false,
         bossAmount: 0,
         groups: [{

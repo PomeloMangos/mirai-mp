@@ -39,22 +39,6 @@
                                         <span class="label-red" wx-if="{{ reg.status == 5 }}">缺席</span>
                                     </span>
                                 </div>
-                                <div class="reg-subline" style="margin-top: -14px;">
-                                    <span class="reg-icon"><i class="fa fa-trophy"></i></span>
-                                    <span class="{{ reg._wclCss || 'gray' }}">
-                                        {{ reg.wcl }}
-                                    </span>
-                                    <span class="reg-icon" style="margin-left: 8px">iLvl.</span>
-                                    <span wx:if="{{ reg.charactor }}" class="{{ reg.charactor._itemCss }}">{{ reg.charactor.highestItemLevel }}<span wx:if="{{ reg.setCount }}"> ({{ reg.setCount }}{{ reg.setName }})</span></span>
-                                    <span wx:else class="gray">未知</span>
-                                    <span class="reg-icon" style="margin-left: 8px"><i class="fa fa-star"></i></span>
-                                    <span wx:if="{{ reg.charactor }}" class="{{ reg._bossCss }}"> {{ reg.bossPassed || 0 }} / {{ bossAmount }}</span>
-                                    <span wx:else class="gray"> 未知</span>
-                                    <span wx:if="{{ reg.hint }}">
-                                        <span class="reg-icon" style="margin-left: 8px"><i class="fa fa-comment-o"></i></span>
-                                        <span class="hint">{{ reg.hint }}</span>
-                                    </span>
-                                </div>
                             </div>
                         </a>
                     </td>

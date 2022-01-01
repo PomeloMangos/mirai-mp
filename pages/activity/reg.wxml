@@ -19,7 +19,7 @@
                 <td>
                     <a>
                         <div>
-                            <div>
+                            <div class="reg-title">
                                 <span class="character-name {{ 'class-' + reg.class }}">
                                     <image class="class-img" src="{{ '/assets/images/class-' + reg.class + '.png' }}" />
                                     {{ reg.name }}
@@ -33,7 +33,7 @@
                                     <span class="label-red" wx-if="{{ reg.status == 5 }}">缺席</span>
                                 </span>
                             </div>
-                            <div class="reg-subline" style="margin-top: -14px;">
+                            <div class="reg-subline {{ shortWidth ? 'short-width' : '' }}">
                                 <span class="reg-icon"><i class="fa fa-trophy"></i></span>
                                 <span class="{{ reg._wclCss || 'gray' }}">
                                     {{ reg.wcl }}

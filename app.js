@@ -30,8 +30,12 @@ App({
     let self = this;
     wx.getSystemInfo({
       success: (result) => {
+        console.log(result);
         if (result.statusBarHeight > 20) {
           self.globalData.isFullScreen = true;
+        }
+        if (result.windowWidth < 400) {
+          self.globalData.shortWidth = true;
         }
       },
     });
@@ -54,6 +58,7 @@ App({
   globalData: {
     host: host,
     isFullScreen: false,
+    shortWidth: true,
     launched: false
   }
 })
