@@ -62,6 +62,11 @@ Component({
             wx.navigateTo({
                 url: `activity?id=${activityId}`,
             })
+        },
+        onNavigateToHomeBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            });
         }
     },
 

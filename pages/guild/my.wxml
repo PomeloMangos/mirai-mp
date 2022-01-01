@@ -4,6 +4,9 @@
     <image wx:if="{{ guild && guild.guildLogoUrl }}" src="{{ host + guild.guildLogoUrl }}" alt="" />
     <image wx:else src="/assets/images/logo.png" alt="" />
 </view>
+<view class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
+    <a bindtap="onNavigateToHomeBtnClicked" class="btn-home"><i class="fa fa-home"></i></a>
+</view>
 
 <view class="wrapper {{ isFullScreen ? 'full' : '' }}">
     <div class="section-title">设置常驻公会</div>

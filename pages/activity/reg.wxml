@@ -63,6 +63,30 @@
             </tr>
         </table>
     </view>
+
+    <view>
+        <div class="section-title">
+            <span>快捷操作</span>
+        </div>
+        <view>
+            <button class="btn-rect" open-type="share">
+                <div><i class="fa fa-share"></i></div>
+                <div>分享</div>
+            </button>
+            <button class="btn-rect" bindtap="onShowPricingBtnClicked">
+                <div><i class="fa fa-money"></i></div>
+                <div>价目表</div>
+            </button>
+            <button class="btn-rect" bindtap="onBackBtnClicked">
+                <div><i class="fa fa-building"></i></div>
+                <div>公会主页</div>
+            </button>
+            <button class="btn-rect" bindtap="onBackToHomeBtnClicked">
+                <div><i class="fa fa-list"></i></div>
+                <div>公会列表</div>
+            </button>
+        </view>
+    </view>
 </view>
 
 <view class="dialog" style="margin-top:-240px" wx:if="{{ selectedReg }}">

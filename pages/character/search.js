@@ -32,6 +32,11 @@ Component({
             wx.navigateTo({
               url: 'character/detail?name=' + this.data.characterName + '&realm=' + this.data.realm,
             })
+        },
+        onNavigateToHomeBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            });
         }
     },
     lifetimes: {

@@ -17,6 +17,16 @@ Component({
                   url: 'activity?id=' + this.data.activity.id,
                 })
             });
+        },
+        onBackToGuildClicked: function() {
+            wx.redirectTo({
+              url: 'guild?id=' + this.data.activity.guildId,
+            });
+        },
+        onBackToHomeBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            });
         }
     },
 

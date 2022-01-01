@@ -3,6 +3,9 @@
 <view class="{{ isFullScreen ? 'header-logo header-full' : 'header-logo' }}">
     <image src="/assets/images/logo.png" alt="" />
 </view>
+<view class="{{ isFullScreen ? 'header-buttons full' : 'header-buttons' }}">
+    <a bindtap="onNavigateToHomeBtnClicked" class="btn-home"><i class="fa fa-home"></i></a>
+</view>
 
 <view class="wrapper {{ isFullScreen ? 'full' : '' }}">
     <view class="section-title">搜索角色</view>

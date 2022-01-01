@@ -32,6 +32,11 @@ Page({
           url: 'pricing-detail?id=' + pricingId + '&guild=' + this.data.guildId,
         });
     },
+    onBackToHomeBtnClicked: function() {
+        wx.redirectTo({
+          url: '../index?redirect=no',
+        });
+    },
     onShareAppMessage: function () {
         return {
             title: '价目表'

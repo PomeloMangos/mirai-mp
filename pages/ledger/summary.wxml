@@ -33,4 +33,28 @@
             <td style="text-align: right;">{{ activity.ledger.statistics.summary.per }}G</td>
         </tr>
     </table>
+
+    <view>
+        <div class="section-title">
+            <span>快捷操作</span>
+        </div>
+        <view>
+            <button class="btn-rect" open-type="share">
+                <div><i class="fa fa-share"></i></div>
+                <div>分享</div>
+            </button>
+            <button class="btn-rect" bindtap="onBackBtnClicked">
+                <div><i class="fa fa-calendar"></i></div>
+                <div>返回活动</div>
+            </button>
+            <button class="btn-rect" bindtap="onBackToGuildClicked">
+                <div><i class="fa fa-building"></i></div>
+                <div>公会主页</div>
+            </button>
+            <button class="btn-rect" bindtap="onBackToHomeBtnClicked">
+                <div><i class="fa fa-list"></i></div>
+                <div>公会列表</div>
+            </button>
+        </view>
+    </view>
 </view>
