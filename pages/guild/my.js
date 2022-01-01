@@ -75,6 +75,11 @@ Component({
             wx.navigateTo({
               url: 'help',
             });
+        },
+        onNavigateToHomeBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            });
         }
     },
 

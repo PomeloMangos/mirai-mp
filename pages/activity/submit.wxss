@@ -15,6 +15,10 @@
     font-weight: bold;
 }
 
+.reg-status {
+    font-size: 14px!important;
+}
+
 .grid-name {
     text-align: center; 
     border-radius: 50px;

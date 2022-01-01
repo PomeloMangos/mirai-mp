@@ -29,11 +29,11 @@
                 <image src="{{ '/assets/images/class-' + ch.class + '.png' }}" class="class-img" />
                 {{ ch.name }}
                 <span wx:if="ch._registered">
-                    <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 0 }}">待审核</span>
-                    <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 1 }}">被拒绝</span>
-                    <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 2 }}">替补队员</span>
-                    <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 3 }}">已请假</span>
-                    <span class="right" style="color: #ccc" wx:if="{{ ch._reg.status == 4 }}">已通过</span>
+                    <span class="right reg-status" style="color: #ccc" wx:if="{{ ch._reg.status == 0 }}">待审核</span>
+                    <span class="right reg-status" style="color: #ccc" wx:if="{{ ch._reg.status == 1 }}">被拒绝</span>
+                    <span class="right reg-status" style="color: #ccc" wx:if="{{ ch._reg.status == 2 }}">替补队员</span>
+                    <span class="right reg-status" style="color: #ccc" wx:if="{{ ch._reg.status == 3 }}">已请假</span>
+                    <span class="right reg-status" style="color: #ccc" wx:if="{{ ch._reg.status == 4 }}">已通过</span>
                 </span>
             </td>
         </tr>

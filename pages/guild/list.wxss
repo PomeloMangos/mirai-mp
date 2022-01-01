@@ -12,3 +12,7 @@
 .guild-item td {
     vertical-align: middle;
 }
+
+.guild-wrapper.full {
+    padding-bottom: 75px;
+}

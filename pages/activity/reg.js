@@ -260,6 +260,16 @@ Component({
             let realm = event.currentTarget.dataset.realm;
             let name = event.currentTarget.dataset.name;
             this.openWclPage(name, realm);
+        },
+        onShowPricingBtnClicked: function() {
+            wx.navigateTo({
+                url: 'guild/pricing?id=' + this.data.activity.guildId,
+            })
+        },
+        onBackToHomeBtnClicked: function() {
+            wx.redirectTo({
+              url: 'index?redirect=no',
+            });
         }
     },
 
