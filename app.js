@@ -58,7 +58,7 @@ App({
   globalData: {
     host: host,
     isFullScreen: false,
-    shortWidth: true,
+    shortWidth: false,
     launched: false
   }
 })
