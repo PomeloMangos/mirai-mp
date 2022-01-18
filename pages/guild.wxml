@@ -1,6 +1,6 @@
 <view>
     <guild-activity wx:if="{{ guild && active == 'home' }}" guild="{{ guild }}"></guild-activity>
-    <character-search wx:if="{{ guild && active == 'ch' }}" realm="{{ guild.realm }}"></character-search>
+    <guild-member wx:if="{{ guild && active == 'ch' }}" guild="{{ guild }}" realm="{{ guild.realm }}"></guild-member>
     <guild-my wx:if="{{ guild && active == 'my' }}" guild="{{ guild }}"></guild-my>
 </view>
 
@@ -14,7 +14,7 @@
             </view>
             <view class="table-td" style="color: {{ active == 'ch' ? '#3dd0d8' : '#c2d4f8' }}" data-active="ch" bindtap="switchTab">
                 <div class="btn-icon"><i class="fa fa-search"></i></div>
-                <div class="btn-text">角色</div>
+                <div class="btn-text">成员</div>
             </view>
             <view class="table-td" bindtap="scanQrCode">
                 <div class="btn-icon"><i class="fa fa-qrcode"></i></div>

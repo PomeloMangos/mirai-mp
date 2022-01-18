@@ -29,6 +29,14 @@ Page({
             return self.loadItemSets();
         }).then(() => {
             return self.loadActivity();
+        }).catch(err => {
+            wx.showToast({
+                title: '加载数据时发生错误',
+                icon: null
+            });
+            wx.redirectTo({
+                url: 'index',
+            });
         });
         this.switchTab2('reg');
     },

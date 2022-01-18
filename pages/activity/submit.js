@@ -205,7 +205,7 @@ Component({
             let body = {
                 name: this.data.selectedCharacter.name,
                 role: this.data.ui.selectedRole,
-                hint: this.hint,
+                hint: this.data.hint,
                 class: this.data.selectedCharacter.class,
                 weChat: weChat,
                 avatarUrl: avatarUrl

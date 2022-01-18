@@ -18,6 +18,10 @@
                     <image src="{{ '/assets/images/class-' + x._player.class + '.png' }}" class="class-img" />
                     {{ x.player }}
                 </td>
+                <td wx:elif="{{ x.class }}" class="{{ 'class-' + x.class }}">
+                    <image src="{{ '/assets/images/class-' + x.class + '.png' }}" class="class-img" />
+                    {{ x.player }}
+                </td>
                 <td wx:else>
                     {{ x.player }}
                 </td>

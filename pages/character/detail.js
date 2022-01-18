@@ -87,7 +87,11 @@ Page({
         });
     },
     onBackBtnClicked: function() {
-        wx.navigateBack();
+        wx.navigateBack().catch(() => {
+            wx.redirectTo({
+              url: 'index'
+            });
+        });
     },
     onTabBtnClicked: function(event) {
         let active = event.currentTarget.dataset.active;

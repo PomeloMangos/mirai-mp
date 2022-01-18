@@ -271,6 +271,9 @@ Component({
             wx.redirectTo({
               url: 'index?redirect=no',
             });
+        },
+        onRefreshBtnClicked: function() {
+            wx.$activity.onLoad({ id: this.data.activity.id });
         }
     },
 

@@ -19,7 +19,15 @@ Page({
             id: options.id || options.scene
         });
         wx.$ledger = this;
-        this.loadActivity();
+        this.loadActivity().catch(err => {
+            wx.showToast({
+                title: '加载数据时发生错误',
+                icon: null
+            });
+            wx.redirectTo({
+                url: 'index',
+            });
+        });
         this.switchTab2('summary');
     },
     onUnload: function() {
@@ -113,7 +121,13 @@ Page({
             if (reg.length) {
                 _player = reg[0];
             }
-            ret.push({ player: keys[i], price: tmp[keys[i]], _player: _player, _priceCss: this.getPriceCss(tmp[keys[i]]) });
+            ret.push({ 
+                player: keys[i], 
+                class: ledger.income.filter(x => x.player == keys[i])[0].class,
+                price: tmp[keys[i]], 
+                _player: _player, 
+                _priceCss: this.getPriceCss(tmp[keys[i]]) 
+            });
         }
 
         ret.sort((a, b) => b.price - a.price);

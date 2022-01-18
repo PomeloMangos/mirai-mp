@@ -48,4 +48,10 @@
             <td colspan="2" class="text-center" style="line-height: 40px;">点击加载更多</td>
         </tr>
     </table>
+
+    <table class="wcl-table" wx:if="{{ guildPermission.guildManager }}">
+        <tr bindtap="onCreateActivityBtnClicked">
+            <td colspan="2" class="text-center row-btn" style="line-height: 40px;"><i class="fa fa-plus"></i> 创建活动</td>
+        </tr>
+    </table>
 </view>

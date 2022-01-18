@@ -2,6 +2,6 @@
   "usingComponents": {
     "guild-activity": "guild/activity",
     "guild-my": "guild/my",
-    "character-search": "character/search"
+    "guild-member": "guild/member"
   }
 }

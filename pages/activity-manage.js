@@ -17,12 +17,25 @@ Page({
         }
     },
     onLoad: function(options) {
-        this.setData({
-            id: options.id || options.scene
-        });
-        wx.$ledger = this;
-        this.loadActivity();
-        this.switchTab2('basic');
+        try
+        {
+            this.setData({
+                id: options.id || options.scene
+            });
+            wx.$ledger = this;
+            this.loadActivity();
+            this.switchTab2('basic');
+        }
+        catch(e) 
+        {
+            wx.showToast({
+              title: '加载数据时发生错误',
+              icon: null
+            });
+            wx.redirectTo({
+              url: 'index',
+            });
+        }
     },
     onUnload: function() {
         wx.$ledger = null;

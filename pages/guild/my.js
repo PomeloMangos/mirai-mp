@@ -43,7 +43,7 @@ Component({
         onCreateActivityClicked: function() {
             wx.navigateTo({
               url: 'guild/create-activity?id=' + this.data.guild.id,
-            })
+            });
         },
         patchDisplayName: function() {
             let self = this;

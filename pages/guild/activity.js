@@ -11,7 +11,8 @@ Component({
         status: 1,
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
-        result: { data: [] }
+        result: { data: [] },
+        guildPermission: {}
     },
 
     methods: {
@@ -67,13 +68,27 @@ Component({
             wx.redirectTo({
               url: 'index?redirect=no',
             });
+        },
+        onCreateActivityBtnClicked: function() {
+            wx.navigateTo({
+                url: 'guild/create-activity?id=' + this.data.guild.id,
+            });
+        },
+        getGuildPermissions: function() {
+            let self = this;
+            qv.requestWithCredential(this.data.host + '/api/user/permission', 'GET').then(result => {
+                self.setData({ guildPermission: result.data.data });
+            });
         }
     },
 
     lifetimes: {
         attached: function() {
-            this.setData({ guild: this.properties.guild });
+            this.setData({ 
+                guild: this.properties.guild
+            });
             this.loadActivities(1);
+            this.getGuildPermissions();
         }
     }
 })

@@ -28,7 +28,15 @@ Page({
         });
         wx.$guild = this;
         wx.$guildId = guildId;
-        this.loadGuild();
+        this.loadGuild().catch(err => {
+            wx.showToast({
+                title: '加载数据时发生错误',
+                icon: null
+            });
+            wx.redirectTo({
+                url: 'index',
+            });
+        });
         this.switchTab2('home');
     },
     onUnload: function() {
