@@ -209,8 +209,8 @@ Component({
                 class: this.data.selectedCharacter.class,
                 weChat: weChat,
                 avatarUrl: avatarUrl,
-                guildId: activity.domainGuildId,
-                guildNameCache: activity.domainGuildName
+                guildId: this.data.activity.domainGuildId,
+                guildNameCache: this.data.activity.domainGuildName
             };
 
             let p;
@@ -261,7 +261,7 @@ Component({
                         'ui.submitDialog': false
                     });
                     wx.redirectTo({
-                      url: 'activity?id=' + this.data.activity.id,
+                      url: 'activity?id=' + this.data.activity.id + '&domain=' + this.data.activity.domainGuildId,
                     });
                     wx.showToast({
                       title: '报名成功',

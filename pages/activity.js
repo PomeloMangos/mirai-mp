@@ -9,6 +9,7 @@ Page({
         active: null,
         layoutVariables: {
         },
+        domain: null,
         activity: null,
         raids: [],
         bossNames: null,
@@ -21,8 +22,10 @@ Page({
     },
     onLoad: function(options) {
         this.setData({
-            id: options.id || options.scene
+            id: options.id || options.scene,
+            domain: options.domain
         });
+        wx.$domain = options.domain;
         wx.$activity = this;
         let self = this;
         this.loadRaids().then(() => {
@@ -121,12 +124,14 @@ Page({
         this.setData({ loaded: false });
         wx.showLoading({
           title: '正在加载活动...',
-        })
+        });
         let self = this;
-        return qv.get(`${this.data.host}/api/activity/${this.data.id}`).then(result => {
+        return qv.get(`${this.data.host}/api/activity/${this.data.id}`, {}, null, true).then(result => {
             let activity = result.data.data;
             wx.$guildId = activity.guildId;
-            
+            if (activity.domainGuildId) {
+                this.setData({ domain: activity.domainGuildId });
+            }
             self.getGuildPermissions();
 
             wx.setNavigationBarTitle({
@@ -181,14 +186,24 @@ Page({
         });
     },
     onShareAppMessage: function () {
+        let path = '/pages/activity?id=' + this.data.activity.id;
+        if (this.data.domain) {
+            path = path + '&domain=' + this.data.activity.domainGuildId;
+        }
         return {
-            title: this.data.activity.name
+            title: this.data.activity.name,
+            path: path
         };
     },
     onShareTimeline: function() {
-        return {
-            title: this.data.activity.name
+        let path = '/pages/activity?id=' + this.data.activity.id;
+        if (this.data.domain) {
+            path = path + '&domain=' + this.data.activity.domainGuildId;
         }
+        return {
+            title: this.data.activity.name,
+            path: path
+        };
     },
     getGuildPermissions: function() {
         let self = this;
@@ -205,5 +220,8 @@ Page({
         wx.navigateTo({
           url: 'activity-manage?id=' + this.data.activity.id,
         })
+    },
+    onUnload: function() {
+        wx.$domain = null;
     }
 })

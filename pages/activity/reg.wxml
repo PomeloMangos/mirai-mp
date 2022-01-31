@@ -23,8 +23,8 @@
                                 <span class="character-name {{ 'class-' + reg.class }}">
                                     <image class="class-img" src="{{ '/assets/images/class-' + reg.class + '.png' }}" />
                                     {{ reg.name }} 
-                                    <span wx:if="{{ !!activityCurrentGuild && !!reg.guildId && activityCurrentGuild != reg.guildId }}">
-                                    - {{ reg.guildNameCache }}
+                                    <span class="guild-name" wx:if="{{ !!activityCurrentGuild && !!reg.guildId && activityCurrentGuild != reg.guildId }}">
+                                    {{'<'}}{{ reg.guildNameCache }}{{'>'}}
                                     </span>
                                 </span>
                                 <span class="right reg-label">
@@ -74,7 +74,7 @@
                 <div><i class="fa fa-share"></i></div>
                 <div>分享给好友</div>
             </button>
-            <button wx:if="{{ activity.allowForward }}" class="btn-rect" bindtap="onShareToGuild">
+            <button wx:if="{{ activity.allowForward }}" class="btn-rect" bindtap="onShareToGuildBtnClicked">
                 <div><i class="fa fa-share"></i></div>
                 <div>分享至公会</div>
             </button>

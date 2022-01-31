@@ -67,7 +67,7 @@ var qv = {
             return this.request(endpoint, method, params, dataType);
         }
     },
-    request: function (endpoint, method, params, dataType) {
+    request: function (endpoint, method, params, dataType, useDomain) {
         var self = this;
         var header = {};
         if (wx) {
@@ -77,6 +77,10 @@ var qv = {
 
             if (wx.$guildId) {
                 header['Guild'] = wx.$guildId;
+            }
+
+            if (wx.$domain && useDomain) {
+                header['Guild'] = wx.$domain;
             }
         }
 
@@ -97,8 +101,8 @@ var qv = {
             });
         });
     },
-    get: function (endpoint, params, dataType) {
-        return this.request(endpoint, 'GET', params, dataType);
+    get: function (endpoint, params, dataType, useDomain) {
+        return this.request(endpoint, 'GET', params, dataType, useDomain);
     },
     post: function (endpoint, params, dataType) {
         return this.request(endpoint, 'POST', params, dataType);

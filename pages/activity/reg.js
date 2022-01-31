@@ -281,6 +281,11 @@ Component({
         },
         onRefreshBtnClicked: function() {
             wx.$activity.onLoad({ id: this.data.activity.id });
+        },
+        onShareToGuildBtnClicked: function() {
+            wx.navigateTo({
+              url: 'activity/share?activity=' + this.data.activity.id
+            })
         }
     },
 
