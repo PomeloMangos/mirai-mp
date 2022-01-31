@@ -22,7 +22,10 @@
                             <div class="reg-title">
                                 <span class="character-name {{ 'class-' + reg.class }}">
                                     <image class="class-img" src="{{ '/assets/images/class-' + reg.class + '.png' }}" />
-                                    {{ reg.name }}
+                                    {{ reg.name }} 
+                                    <span wx:if="{{ activityCurrentGuild && activityCurrentGuild != reg.guildId }}">
+                                    - {{ reg.guildNameCache }}
+                                    </span>
                                 </span>
                                 <span class="right reg-label">
                                     <span class="label-gray" wx-if="{{ reg.status == 0 }}">待审核</span>

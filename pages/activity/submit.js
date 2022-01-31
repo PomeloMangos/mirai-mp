@@ -208,7 +208,9 @@ Component({
                 hint: this.data.hint,
                 class: this.data.selectedCharacter.class,
                 weChat: weChat,
-                avatarUrl: avatarUrl
+                avatarUrl: avatarUrl,
+                guildId: activity.domainGuildId,
+                guildNameCache: activity.domainGuildName
             };
 
             let p;

@@ -6,6 +6,8 @@ Component({
     },
 
     data: {
+        activityHostGuild: null,
+        activityCurrentGuild: null,
         activity: null,
         host: getApp().globalData.host,
         isFullScreen: getApp().globalData.isFullScreen,
@@ -135,6 +137,11 @@ Component({
             let grouped = [];
 
             this.getGuildPermissions();
+
+            this.setData({
+                activityHostGuild: activity.guildId,
+                activityCurrentGuild: activity.domainGuildId
+            });
 
             // 处理分组
             for (let i = 0; i < this.data.groups.length; ++i) {

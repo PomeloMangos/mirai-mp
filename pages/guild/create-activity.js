@@ -99,7 +99,8 @@ Page({
             deadline: moment(this.data.deadline + ":00").utc().format('YYYY-MM-DDTHH:mmZ'),
             begin: moment(this.data.begin + ":00").utc().format('YYYY-MM-DDTHH:mmZ'),
             estimatedDurationInHours: this.data.duration,
-            raids: this.data.selectedRaids.toString()
+            raids: this.data.selectedRaids.toString(),
+            allowForward: this.data.allowForward
         }).then(result => {
             wx.hideLoading({});
             if (result.data.code == 200) {
@@ -116,6 +117,12 @@ Page({
                     showCancel: false
                 });
             }
+        });
+    },
+    switchAllowForward: function(event) {
+        let allow = event.currentTarget.dataset.allow;
+        this.setData({
+            allowForward: allow
         });
     }
 })
